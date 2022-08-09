@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/09 17:24:46 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/08/09 18:10:30 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,23 @@ void	ft_print_list(struct stack** list_head, char ab)
 		ft_printf("NULL\n");
 }
 
+void	ft_pop(struct stack** stack_x)
+{
+	struct stack* temp;
+
+	temp = (*stack_x);
+	(*stack_x) = temp->next;
+	free(temp);
+}
+
+void ft_pa(struct stack** stack_a, struct stack** stack_b, int len_b)
+{
+	if (len_b == 0)
+		return ;
+	ft_push(stack_a, (*stack_b)->data);
+	ft_pop(stack_b);
+}
+
 int	main(int argc, char *argv[])
 {
 	struct stack*	stack_a;
@@ -159,6 +176,10 @@ int	main(int argc, char *argv[])
 	ft_print_list(&stack_b, 'b');
 	ft_ss(&stack_a, &stack_b, len, len);
 	ft_printf("-----------------\n");
+	ft_print_list(&stack_a, 'a');
+	ft_print_list(&stack_b, 'b');
+	ft_printf("-----------------\n");
+	ft_pa(&stack_a, &stack_b, len);
 	ft_print_list(&stack_a, 'a');
 	ft_print_list(&stack_b, 'b');
 
