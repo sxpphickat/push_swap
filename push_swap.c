@@ -6,13 +6,14 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/09 16:35:30 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/08/09 17:24:46 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
+#include <unistd.h>
+#include "libft/libft.h"
 
 //stack
 
@@ -72,6 +73,44 @@ void	ft_swap_a(struct stack** stack_a, int	len)
 	*stack_a = node_two;
 	node_one->next = node_two->next;
 	node_two->next = node_one;
+	write(1, "sa\n", 3);
+}
+
+void	ft_swap_b(struct stack** stack_b, int	len)
+{
+	struct stack*	node_one;
+	struct stack*	node_two;
+
+	if (len < 2)
+		return ;
+	node_one = (*stack_b);
+	node_two = (*stack_b)->next;
+	*stack_b = node_two;
+	node_one->next = node_two->next;
+	node_two->next = node_one;
+	write(1, "sb\n", 3);
+}
+
+void ft_ss(struct stack** stack_a, struct stack** stack_b, int len_a, int len_b)
+{
+	struct stack*	node_one;
+	struct stack*	node_two;
+	struct stack*	node_one_b;
+	struct stack*	node_two_b;
+
+	if (len_a < 2 || len_b < 2)
+		return ;
+	node_one = (*stack_a);
+	node_two = (*stack_a)->next;
+	*stack_a = node_two;
+	node_one->next = node_two->next;
+	node_two->next = node_one;
+	node_one_b = (*stack_b);
+	node_two_b = (*stack_b)->next;
+	*stack_b = node_two_b;
+	node_one_b->next = node_two_b->next;
+	node_two_b->next = node_one_b;
+	write(1, "ss\n", 3);
 }
 
 void ft_create_a(struct stack** stack_a, char *argv[], int len)
@@ -80,39 +119,51 @@ void ft_create_a(struct stack** stack_a, char *argv[], int len)
 		ft_push(stack_a, atoi(argv[len--])); // tirar atoi;
 }
 
-void	ft_print_list(struct stack** list_head)
+void	ft_print_list(struct stack** list_head, char ab)
 {
 	struct stack*	print_stack;
 
+	if (ab == 'a')
+		ft_printf("stack a: ");
+	else if (ab == 'b')
+		ft_printf("stack b: ");
 	print_stack = (*list_head);
 	while (print_stack != NULL)
 	{
-		printf("%i -> ", print_stack->data);
+		ft_printf("%i -> ", print_stack->data);
 		print_stack = print_stack->next;
 	}
 	if (print_stack == NULL)
-		printf("NULL\n");
+		ft_printf("NULL\n");
 }
 
 int	main(int argc, char *argv[])
 {
 	struct stack*	stack_a;
+	struct stack*	stack_b;
 	int				len;
 
 	len = argc - 1;
 	if (argc < 2)
 		return (0);
 	stack_a = NULL;
+	stack_b = NULL;
 	ft_create_a(&stack_a, argv, len);
-	ft_print_list(&stack_a);
+	ft_create_a(&stack_b, argv, len);
+	ft_print_list(&stack_a, 'a');
+	ft_print_list(&stack_b, 'b');
 	ft_swap_a(&stack_a, len);
-	printf("-----------------\n");
-	ft_print_list(&stack_a);
-	//printf("%i\n", stack_a->data);
-	//printf("%i\n", stack_a->next->data);
-//	printf("%i\n", stack_a->next->next->data);
-//	printf("%i\n", stack_a->next->next->next->data);
+	ft_swap_b(&stack_b, len);
+	ft_printf("-----------------\n");
+	ft_print_list(&stack_a, 'a');
+	ft_print_list(&stack_b, 'b');
+	ft_ss(&stack_a, &stack_b, len, len);
+	ft_printf("-----------------\n");
+	ft_print_list(&stack_a, 'a');
+	ft_print_list(&stack_b, 'b');
+
 	return (0);
 }
+
 
 

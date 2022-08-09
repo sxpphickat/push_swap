@@ -9,17 +9,19 @@ SOURCE = push_swap.c
 RM = rm -f
 
 
-(name):
-		$(CC) $(CFLAGS) $(SOURCE) -o $(NAME)
+$(NAME): libgen
+		$(CC) $(CFLAGS) $(SOURCE) libft/libft.a -o $(NAME)
 
 all: $(name)
 
+libgen:
+		cd ./libft && make
+
 clean:
-		$(RM) $(NAME)
+		cd ./libft && make clean
 
 fclean:
-		$(clean)
+		$(RM) $(NAME)
+		cd ./libft && make fclean
 
-re:
-		$(fclean)
-		$(all)
+re:		fclean all
