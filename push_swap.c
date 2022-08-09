@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/09 18:10:30 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/08/09 18:46:23 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,8 @@ void	ft_pop(struct stack** stack_x)
 {
 	struct stack* temp;
 
+	if ((*stack_x) == NULL)
+		return ;
 	temp = (*stack_x);
 	(*stack_x) = temp->next;
 	free(temp);
@@ -148,10 +150,32 @@ void	ft_pop(struct stack** stack_x)
 
 void ft_pa(struct stack** stack_a, struct stack** stack_b, int len_b)
 {
+	if ((*stack_b) == NULL)
+		return ;
 	if (len_b == 0)
 		return ;
 	ft_push(stack_a, (*stack_b)->data);
 	ft_pop(stack_b);
+}
+
+void ft_pb(struct stack** stack_a, struct stack** stack_b, int len_a)
+{
+	if ((*stack_a) == NULL)
+		return ;
+	if (len_a == 0)
+		return ;
+	ft_push(stack_b, (*stack_a)->data);
+	ft_pop(stack_a);
+}
+
+void ft_ra(struct stack** stack_a)
+{
+	struct stack* temp;
+
+	temp = (*stack_a);
+	ft_append(stack_a, (*stack_a)->data);
+	ft_pop(stack_a);
+	//free(temp);
 }
 
 int	main(int argc, char *argv[])
@@ -165,21 +189,15 @@ int	main(int argc, char *argv[])
 		return (0);
 	stack_a = NULL;
 	stack_b = NULL;
+	ft_push(&stack_b, 10);
 	ft_create_a(&stack_a, argv, len);
-	ft_create_a(&stack_b, argv, len);
-	ft_print_list(&stack_a, 'a');
-	ft_print_list(&stack_b, 'b');
-	ft_swap_a(&stack_a, len);
-	ft_swap_b(&stack_b, len);
-	ft_printf("-----------------\n");
-	ft_print_list(&stack_a, 'a');
-	ft_print_list(&stack_b, 'b');
-	ft_ss(&stack_a, &stack_b, len, len);
-	ft_printf("-----------------\n");
 	ft_print_list(&stack_a, 'a');
 	ft_print_list(&stack_b, 'b');
 	ft_printf("-----------------\n");
-	ft_pa(&stack_a, &stack_b, len);
+	ft_ra(&stack_a);
+	ft_ra(&stack_a);
+	ft_ra(&stack_a);
+	ft_ra(&stack_a);
 	ft_print_list(&stack_a, 'a');
 	ft_print_list(&stack_b, 'b');
 
