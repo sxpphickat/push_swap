@@ -16,3 +16,10 @@ all: $(name)
 
 clean:
 		$(RM) $(NAME)
+
+fclean:
+		$(clean)
+
+re:
+		$(fclean)
+		$(all)

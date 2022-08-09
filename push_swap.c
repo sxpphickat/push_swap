@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/09 14:31:43 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/08/09 16:05:30 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,27 +60,44 @@ void ft_insert_after(struct stack*	node, int	new_data)
 	node->next = new_node;
 }
 
-void ft_create_a(struct stack** stack_a, char *argv[])
+void	ft_swap_a(struct stack** stack_a)
 {
-	int	i;
+	struct stack*	node_one;
+	struct stack*	node_two;
 
-	i = 1;
-	while (argv[i] != NULL)
-		ft_push(stack_a, atoi(argv[i++])); // tirar atoi;
+	node_one = (*stack_a);
+	node_two = (*stack_a)->next;
+
+	*stack_a = node_two;
+	node_one->next = node_two->next;
+	node_two->next = node_one;
+}
+
+void ft_create_a(struct stack** stack_a, char *argv[], int len)
+{
+	while (len >= 1)
+		ft_push(stack_a, atoi(argv[len--])); // tirar atoi;
 }
 
 int	main(int argc, char *argv[])
-//int	main(void)
 {
 	struct stack*	stack_a;
 
-	(void) argc;
+	if (argc < 2)
+		return (0);
 	stack_a = NULL;
-	ft_create_a(&stack_a, argv);
+	ft_create_a(&stack_a, argv, argc - 1);
+	printf("%i\n", stack_a->data);
+	printf("%i\n", stack_a->next->data);
+	printf("%i\n", stack_a->next->next->data);
+//	printf("%i\n", stack_a->next->next->next->data);
+	ft_swap_a(&stack_a);
+	printf("-----------------\n");
 	printf("%i\n", stack_a->data);
 	printf("%i\n", stack_a->next->data);
 	printf("%i\n", stack_a->next->next->data);
 	printf("%i\n", stack_a->next->next->next->data);
+
 
 	return (0);
 }
