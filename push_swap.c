@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/10 12:59:55 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/08/10 15:26:43 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,10 +113,10 @@ void ft_ss(struct stack** stack_a, struct stack** stack_b, int len_a, int len_b)
 	write(1, "ss\n", 3);
 }
 
-void ft_create_a(struct stack** stack_a, char *argv[], int len)
+void	ft_create_x(struct stack** stack_a, char *argv[], int len)
 {
 	while (len >= 1)
-		ft_push(stack_a, atoi(argv[len--])); // tirar atoi;
+		ft_push(stack_a, ft_atoi(argv[len--])); // tirar atoi;
 }
 
 void	ft_print_list(struct stack** list_head, char ab)
@@ -145,6 +145,7 @@ void	ft_pop(struct stack** stack_x)
 		return ;
 	temp = (*stack_x);
 	(*stack_x) = temp->next;
+	temp = NULL;      //deleta o conteudo;
 	free(temp);
 }
 
@@ -253,6 +254,29 @@ void ft_rrr(struct stack** stack_a, struct stack** stack_b)
 	write(1, "rrr\n", 4);
 }
 
+void ft_print_stacks(struct stack** stack_a, struct stack** stack_b)
+{
+	write(1, "\n", 1);
+	while ((*stack_a) != NULL || (*stack_b) != NULL)
+	{
+		if ((*stack_a) != NULL)
+		{
+			ft_printf("%i", (*stack_a)->data);
+			(*stack_a) = (*stack_a)->next;
+		}
+		write(1, "  ", 2);
+		if ((*stack_b) != NULL)
+		{
+			ft_printf("%i", (*stack_b)->data);
+			(*stack_b) = (*stack_b)->next;
+		}
+		write(1, "\n", 1);
+	}
+	write(1, "\n", 1);
+	write(1, "-  -\n", 5);
+	write(1, "a  b\n", 5);
+}
+
 int	main(int argc, char *argv[])
 {
 	struct stack*	stack_a;
@@ -264,31 +288,13 @@ int	main(int argc, char *argv[])
 		return (0);
 	stack_a = NULL;
 	stack_b = NULL;
+	write(1, "\n", 1);
+	ft_create_x(&stack_a, argv, len);
 	ft_push(&stack_b, 10);
-	ft_push(&stack_b, 11);
-	ft_push(&stack_b, 12);
-	ft_push(&stack_b, 13);
-	ft_push(&stack_b, 14);
-	ft_create_a(&stack_a, argv, len);
-	ft_print_list(&stack_a, 'a');
-	ft_print_list(&stack_b, 'b');
-	ft_printf("-----------------\n");
-	ft_ra(&stack_a);
-	ft_ra(&stack_a);
-	ft_ra(&stack_a);
-	ft_ra(&stack_a);
-	ft_rb(&stack_b);
-	ft_rb(&stack_b);
-	ft_rb(&stack_b);
-	ft_rr(&stack_a, &stack_b);
-	ft_rr(&stack_a, &stack_b);
-	ft_rra(&stack_a);
-	ft_rra(&stack_a);
-	ft_rrb(&stack_b);
-	ft_rrr(&stack_a, &stack_b);
-	ft_rrr(&stack_a, &stack_b);
-	ft_print_list(&stack_a, 'a');
-	ft_print_list(&stack_b, 'b');
+	ft_push(&stack_b, 20);
+	ft_swap_b(&stack_b, len);
+	ft_swap_a(&stack_a, len);
+	ft_print_stacks(&stack_a, &stack_b);
 
 	return (0);
 }
