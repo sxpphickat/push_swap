@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/10 12:45:22 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/08/10 12:59:55 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,7 @@ void ft_pa(struct stack** stack_a, struct stack** stack_b, int len_b)
 		return ;
 	ft_push(stack_a, (*stack_b)->data);
 	ft_pop(stack_b);
+	write(1, "pa\n", 3);
 }
 
 void ft_pb(struct stack** stack_a, struct stack** stack_b, int len_a)
@@ -166,18 +167,21 @@ void ft_pb(struct stack** stack_a, struct stack** stack_b, int len_a)
 		return ;
 	ft_push(stack_b, (*stack_a)->data);
 	ft_pop(stack_a);
+	write(1, "pb\n", 3);
 }
 
 void ft_ra(struct stack** stack_a)
 {
 	ft_append(stack_a, (*stack_a)->data);
 	ft_pop(stack_a);
+	write(1, "ra\n", 3);
 }
 
 void ft_rb(struct stack** stack_b)
 {
 	ft_append(stack_b, (*stack_b)->data);
 	ft_pop(stack_b);
+	write(1, "rb\n", 3);
 }
 
 void ft_rr(struct stack** stack_a, struct stack** stack_b)
@@ -186,6 +190,7 @@ void ft_rr(struct stack** stack_a, struct stack** stack_b)
 	ft_pop(stack_a);
 	ft_append(stack_b, (*stack_b)->data);
 	ft_pop(stack_b);
+	write(1, "rr\n", 3);
 }
 
 void ft_rra(struct stack** stack_a)
@@ -193,6 +198,8 @@ void ft_rra(struct stack** stack_a)
 	struct stack*	temp;
 	struct stack*	temp_free;
 
+	if ((*stack_a)->next == NULL)
+		return ;
 	temp = (*stack_a);
 	while (temp->next->next != NULL)
 		temp = temp->next;
@@ -200,6 +207,7 @@ void ft_rra(struct stack** stack_a)
 	temp_free = temp->next;
 	free(temp_free);
 	temp->next = NULL;
+	write(1, "rra\n", 4);
 }
 
 void ft_rrb(struct stack** stack_b)
@@ -207,6 +215,8 @@ void ft_rrb(struct stack** stack_b)
 	struct stack*	temp;
 	struct stack*	temp_free;
 
+	if ((*stack_b)->next == NULL)
+		return ;
 	temp = (*stack_b);
 	while (temp->next->next != NULL)
 		temp = temp->next;
@@ -214,6 +224,33 @@ void ft_rrb(struct stack** stack_b)
 	temp_free = temp->next;
 	free(temp_free);
 	temp->next = NULL;
+	write(1, "rrb\n", 4);
+}
+
+void ft_rrr(struct stack** stack_a, struct stack** stack_b)
+{
+	struct stack*	temp;
+	struct stack*	temp_free;
+	struct stack*	temp_b;
+	struct stack*	temp_free_b;
+
+	if ((*stack_a)->next == NULL || (*stack_b)->next == NULL)
+		return ;
+	temp = (*stack_a);
+	while (temp->next->next != NULL)
+		temp = temp->next;
+	ft_push(stack_a, temp->next->data);
+	temp_free = temp->next;
+	free(temp_free);
+	temp->next = NULL;
+	temp_b = (*stack_b);
+	while (temp_b->next->next != NULL)
+		temp_b = temp_b->next;
+	ft_push(stack_b, temp_b->next->data);
+	temp_free_b = temp_b->next;
+	free(temp_free_b);
+	temp_b->next = NULL;
+	write(1, "rrr\n", 4);
 }
 
 int	main(int argc, char *argv[])
@@ -248,6 +285,8 @@ int	main(int argc, char *argv[])
 	ft_rra(&stack_a);
 	ft_rra(&stack_a);
 	ft_rrb(&stack_b);
+	ft_rrr(&stack_a, &stack_b);
+	ft_rrr(&stack_a, &stack_b);
 	ft_print_list(&stack_a, 'a');
 	ft_print_list(&stack_b, 'b');
 
