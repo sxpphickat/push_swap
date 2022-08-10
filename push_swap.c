@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/09 18:46:23 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/08/10 12:45:22 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,12 +170,50 @@ void ft_pb(struct stack** stack_a, struct stack** stack_b, int len_a)
 
 void ft_ra(struct stack** stack_a)
 {
-	struct stack* temp;
-
-	temp = (*stack_a);
 	ft_append(stack_a, (*stack_a)->data);
 	ft_pop(stack_a);
-	//free(temp);
+}
+
+void ft_rb(struct stack** stack_b)
+{
+	ft_append(stack_b, (*stack_b)->data);
+	ft_pop(stack_b);
+}
+
+void ft_rr(struct stack** stack_a, struct stack** stack_b)
+{
+	ft_append(stack_a, (*stack_a)->data);
+	ft_pop(stack_a);
+	ft_append(stack_b, (*stack_b)->data);
+	ft_pop(stack_b);
+}
+
+void ft_rra(struct stack** stack_a)
+{
+	struct stack*	temp;
+	struct stack*	temp_free;
+
+	temp = (*stack_a);
+	while (temp->next->next != NULL)
+		temp = temp->next;
+	ft_push(stack_a, temp->next->data);
+	temp_free = temp->next;
+	free(temp_free);
+	temp->next = NULL;
+}
+
+void ft_rrb(struct stack** stack_b)
+{
+	struct stack*	temp;
+	struct stack*	temp_free;
+
+	temp = (*stack_b);
+	while (temp->next->next != NULL)
+		temp = temp->next;
+	ft_push(stack_b, temp->next->data);
+	temp_free = temp->next;
+	free(temp_free);
+	temp->next = NULL;
 }
 
 int	main(int argc, char *argv[])
@@ -190,6 +228,10 @@ int	main(int argc, char *argv[])
 	stack_a = NULL;
 	stack_b = NULL;
 	ft_push(&stack_b, 10);
+	ft_push(&stack_b, 11);
+	ft_push(&stack_b, 12);
+	ft_push(&stack_b, 13);
+	ft_push(&stack_b, 14);
 	ft_create_a(&stack_a, argv, len);
 	ft_print_list(&stack_a, 'a');
 	ft_print_list(&stack_b, 'b');
@@ -198,6 +240,14 @@ int	main(int argc, char *argv[])
 	ft_ra(&stack_a);
 	ft_ra(&stack_a);
 	ft_ra(&stack_a);
+	ft_rb(&stack_b);
+	ft_rb(&stack_b);
+	ft_rb(&stack_b);
+	ft_rr(&stack_a, &stack_b);
+	ft_rr(&stack_a, &stack_b);
+	ft_rra(&stack_a);
+	ft_rra(&stack_a);
+	ft_rrb(&stack_b);
 	ft_print_list(&stack_a, 'a');
 	ft_print_list(&stack_b, 'b');
 
