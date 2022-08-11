@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/11 17:09:39 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/08/11 17:35:03 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -284,18 +284,7 @@ void ft_print_stacks(struct stack** stack_a, struct stack** stack_b)
 
 void	ft_sort(struct stack** stack_a, struct stack** stack_b, int	len)
 {
-	struct stack** start;
-
-	start = &(*stack_a);
-	while ((*stack_a) != NULL)
-	{
-		if ((*stack_a)->data > (*stack_a)->next->data)
-		{
-			ft_sa(stack_a, len);
-			ft_pb(stack_a, stack_b, len);
-		}
-		(*stack_a) = (*stack_a)->next;
-	}
+	struct stack	*
 }
 
 int	main(int argc, char *argv[])
@@ -313,7 +302,7 @@ int	main(int argc, char *argv[])
 //	ft_push(&stack_b, 20);
 	ft_create_x(&stack_a, argv, len);
 	ft_print_stacks(&stack_a, &stack_b);
-	ft_printf("------------------------");
+	ft_printf("------------------------\n");
 //	ft_sort(&stack_a, &stack_b, len);
 	ft_print_stacks(&stack_a, &stack_b);
 
