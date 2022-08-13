@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 13:54:25 by vipereir          #+#    #+#             */
-/*   Updated: 2022/07/25 17:01:03 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/08/12 23:34:57 by sphh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	*ft_memmove(void	*dst, const void	*src, size_t	n)
 	else
 	{
 	i = n - 1;
-		while (i >= 0 && i < n)
+		//while (i >= 0 && i < n)
+		while (i > 0 && i < n)
 		{
 			((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
 			i--;
