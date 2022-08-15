@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/12 23:32:48 by sphh             ###   ########.fr       */
+/*   Updated: 2022/08/15 12:20:25 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,11 +282,45 @@ void ft_print_stacks(struct stack** stack_a, struct stack** stack_b)
 	write(1, "a  b\n", 5);
 }
 
+int	ft_sort_check(struct stack** stack_a, int	len)
+{
+	struct stack*	temp;
+	int				i;
+
+	i = 0;
+	temp = (*stack_a);
+	while (temp->next != NULL)
+	{
+		if (temp->data < temp->next->data)
+		{
+			temp = temp->next;
+			i++;
+		}
+		else
+			return (1);
+	}
+	if (i == len - 1)
+		return (0);
+	return (1);
+}
+
 void	ft_sort(struct stack** stack_a, struct stack** stack_b, int	len)
 {
+	int	i;
+
+	i = - 1;
 	(void)(*stack_b);
-	if ((*stack_a)->data > (*stack_a)->next->data)
-		ft_sa(stack_a, len);
+	while(++i < len)
+	{
+		if ((*stack_a)->data > (*stack_a)->next->data)
+			ft_pb(stack_a, stack_b, len);
+		else //if ((*stack_a)->data < (*stack_b)->data)
+		{
+			ft_pb(stack_a, stack_b, len);
+			ft_sb(stack_b, len);
+			//ft_pa(stack_a, stack_b, len);
+		}
+	}
 }
 
 int	main(int argc, char *argv[])
@@ -310,6 +344,3 @@ int	main(int argc, char *argv[])
 
 	return (0);
 }
-
-
-
