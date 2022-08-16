@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/16 11:50:15 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/08/16 11:58:36 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -336,12 +336,12 @@ int	main(int argc, char *argv[])
 		return (0);
 	stack_a = NULL;
 	stack_b = NULL;
-	write(1, "\n", 1);
+//	write(1, "\n", 1);
 	ft_create_x(&stack_a, argv, len);
-	ft_print_stacks(&stack_a, &stack_b);
-	ft_printf("------------------------\n");
+//	ft_print_stacks(&stack_a, &stack_b);
+//	ft_printf("------------------------\n");
 	ft_sort(&stack_a, &stack_b, len);
-	ft_print_stacks(&stack_a, &stack_b);
+//	ft_print_stacks(&stack_a, &stack_b);
 
 	return (0);
 }
