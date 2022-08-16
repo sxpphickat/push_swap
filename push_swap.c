@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/15 12:20:25 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/08/16 11:50:15 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -306,22 +306,24 @@ int	ft_sort_check(struct stack** stack_a, int	len)
 
 void	ft_sort(struct stack** stack_a, struct stack** stack_b, int	len)
 {
-	int	i;
+	int		i;
 
-	i = - 1;
+	i = 0;
 	(void)(*stack_b);
-	while(++i < len)
+	while (ft_sort_check(stack_a, len))
 	{
 		if ((*stack_a)->data > (*stack_a)->next->data)
-			ft_pb(stack_a, stack_b, len);
-		else //if ((*stack_a)->data < (*stack_b)->data)
+			ft_sa(stack_a, len);
+		ft_ra(stack_a);
+		i++;
+		if (i == len - 1)
 		{
-			ft_pb(stack_a, stack_b, len);
-			ft_sb(stack_b, len);
-			//ft_pa(stack_a, stack_b, len);
+			ft_ra(stack_a);
+			i = 0;
 		}
 	}
 }
+
 
 int	main(int argc, char *argv[])
 {
@@ -335,7 +337,6 @@ int	main(int argc, char *argv[])
 	stack_a = NULL;
 	stack_b = NULL;
 	write(1, "\n", 1);
-//	ft_push(&stack_b, 20);
 	ft_create_x(&stack_a, argv, len);
 	ft_print_stacks(&stack_a, &stack_b);
 	ft_printf("------------------------\n");
