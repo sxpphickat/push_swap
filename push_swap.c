@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/16 11:58:36 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/08/16 13:42:04 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -324,6 +324,41 @@ void	ft_sort(struct stack** stack_a, struct stack** stack_b, int	len)
 	}
 }
 
+int	ft_repeat_check(struct stack **stack_a)
+{
+	struct stack*	temp_stack;
+	struct stack*	next;
+	int				temp;
+
+	temp_stack = (*stack_a);
+	temp = temp_stack->data;
+	if (temp_stack->next != NULL)
+		temp_stack = temp_stack->next;
+	else
+		return(1);
+	if (temp_stack->next != NULL)
+		next = temp_stack->next;
+	else
+		next = NULL;
+	while (temp_stack != NULL)
+	{
+		if (temp == temp_stack->data)
+			return (1);
+		else
+			temp_stack = temp_stack->next;
+		if (temp_stack == NULL)
+		{
+			if (next != NULL)
+			{
+				temp_stack = next->next;
+				temp = next->data;
+				next = temp_stack;
+			}
+		}
+	}
+	return (0);
+}
+
 
 int	main(int argc, char *argv[])
 {
@@ -338,6 +373,9 @@ int	main(int argc, char *argv[])
 	stack_b = NULL;
 //	write(1, "\n", 1);
 	ft_create_x(&stack_a, argv, len);
+	if (ft_repeat_check(&stack_a))
+		return (0);
+	//ft_printf("check: %i\n", ft_repeat_check(&stack_a));
 //	ft_print_stacks(&stack_a, &stack_b);
 //	ft_printf("------------------------\n");
 	ft_sort(&stack_a, &stack_b, len);
