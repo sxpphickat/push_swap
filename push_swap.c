@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/16 13:42:04 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/08/17 14:09:40 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -359,6 +359,56 @@ int	ft_repeat_check(struct stack **stack_a)
 	return (0);
 }
 
+int		ft_find_smaller(struct stack** stack_a, int better)
+{
+	struct stack* temp;
+	int	small;
+
+	temp = (*stack_a);
+	small = temp->data;
+	while(temp->next != NULL)
+	{
+		temp = temp->next;
+		if (small > temp->data && temp->data > better)
+			small = temp->data;
+	}
+	return(small);
+}
+
+int		ft_find_best(struct stack** stack_a, int len, int find)
+{
+	struct stack* temp;
+	int	movs;
+
+	movs = 0;
+	temp = (*stack_a);
+	while(temp->data != find)
+	{
+		temp = temp->next;
+		movs++;
+	}
+	if (movs > len / 2)
+		return(1);
+	else
+		return (2);
+}
+
+void	ft_super_sort(struct stack** stack_a, struct stack** stack_b, int len)
+{
+	int	r;
+	int	small;
+
+	(void)stack_b;
+	small = ft_find_smaller(stack_a, 0);
+	r = ft_find_best(stack_a, len, small);
+	while((*stack_a)->data != small)
+	{
+		if (r == 1)
+			ft_rra(stack_a);
+		else
+			ft_ra(stack_a);
+	}
+}
 
 int	main(int argc, char *argv[])
 {
@@ -371,15 +421,21 @@ int	main(int argc, char *argv[])
 		return (0);
 	stack_a = NULL;
 	stack_b = NULL;
-//	write(1, "\n", 1);
 	ft_create_x(&stack_a, argv, len);
 	if (ft_repeat_check(&stack_a))
+	{
+		write(2, "Error\n", 6);
 		return (0);
-	//ft_printf("check: %i\n", ft_repeat_check(&stack_a));
-//	ft_print_stacks(&stack_a, &stack_b);
-//	ft_printf("------------------------\n");
-	ft_sort(&stack_a, &stack_b, len);
-//	ft_print_stacks(&stack_a, &stack_b);
+	}
+	ft_print_stacks(&stack_a, &stack_b);
+	ft_printf("------------------------\n");
+//	ft_sort(&stack_a, &stack_b, len);
+//	ft_bubble(&stack_a, &stack_b, len);
+
+//	ft_printf("%i | %i\n", ft_find_smaller(&stack_a, 0), ft_find_best(&stack_a, len, 6));
+	ft_super_sort(&stack_a, &stack_b, len);
+	ft_printf("------------------------\n");
+	ft_print_stacks(&stack_a, &stack_b);
 
 	return (0);
 }
