@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/17 14:32:57 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/08/17 15:55:33 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -420,7 +420,15 @@ void	ft_super_sort(struct stack** stack_a, struct stack** stack_b, int len)
 	while ((*stack_b) != NULL)
 		ft_pa(stack_a, stack_b, len);
 }
+/*
+void	ft_double_sort(struct stack** stack_a, struct stack** stack_b, int len)
+{
 
+		ft_pb(stack_a, stack_b, len);
+	if ((*stack_b)->data > (*stack_b)->next->data && (*stack_a)->data < (*stack_a)->next->data)
+
+}
+*/
 int	main(int argc, char *argv[])
 {
 	struct stack*	stack_a;
@@ -438,15 +446,14 @@ int	main(int argc, char *argv[])
 		write(2, "Error\n", 6);
 		return (0);
 	}
-//	ft_print_stacks(&stack_a, &stack_b);
-//	ft_printf("------------------------\n");
+	ft_print_stacks(&stack_a, &stack_b);
+	ft_printf("------------------------\n");
 //	ft_sort(&stack_a, &stack_b, len);
 //	ft_bubble(&stack_a, &stack_b, len);
 
-//	ft_printf("%i | %i\n", ft_find_smaller(&stack_a, 0), ft_find_best(&stack_a, len, 6));
 	ft_super_sort(&stack_a, &stack_b, len);
-//	ft_printf("------------------------\n");
-//	ft_print_stacks(&stack_a, &stack_b);
+	ft_printf("------------------------\n");
+	ft_print_stacks(&stack_a, &stack_b);
 
 	return (0);
 }
