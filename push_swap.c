@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/17 14:09:40 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/08/17 14:32:57 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -359,7 +359,7 @@ int	ft_repeat_check(struct stack **stack_a)
 	return (0);
 }
 
-int		ft_find_smaller(struct stack** stack_a, int better)
+int		ft_find_smaller(struct stack** stack_a)
 {
 	struct stack* temp;
 	int	small;
@@ -369,7 +369,7 @@ int		ft_find_smaller(struct stack** stack_a, int better)
 	while(temp->next != NULL)
 	{
 		temp = temp->next;
-		if (small > temp->data && temp->data > better)
+		if (small > temp->data && temp->data) // agr ele acha o maior
 			small = temp->data;
 	}
 	return(small);
@@ -399,15 +399,26 @@ void	ft_super_sort(struct stack** stack_a, struct stack** stack_b, int len)
 	int	small;
 
 	(void)stack_b;
-	small = ft_find_smaller(stack_a, 0);
+	small = ft_find_smaller(stack_a);
 	r = ft_find_best(stack_a, len, small);
-	while((*stack_a)->data != small)
+	while ((*stack_a) != NULL)
 	{
-		if (r == 1)
-			ft_rra(stack_a);
-		else
-			ft_ra(stack_a);
+		while((*stack_a)->data != small)
+		{
+			if (r == 1)
+				ft_rra(stack_a);
+			else
+				ft_ra(stack_a);
+		}
+		ft_pb(stack_a, stack_b, len);
+		if ((*stack_a) != NULL)
+		{
+			small = ft_find_smaller(stack_a);
+			r = ft_find_best(stack_a, len, small);
+		}
 	}
+	while ((*stack_b) != NULL)
+		ft_pa(stack_a, stack_b, len);
 }
 
 int	main(int argc, char *argv[])
@@ -427,15 +438,15 @@ int	main(int argc, char *argv[])
 		write(2, "Error\n", 6);
 		return (0);
 	}
-	ft_print_stacks(&stack_a, &stack_b);
-	ft_printf("------------------------\n");
+//	ft_print_stacks(&stack_a, &stack_b);
+//	ft_printf("------------------------\n");
 //	ft_sort(&stack_a, &stack_b, len);
 //	ft_bubble(&stack_a, &stack_b, len);
 
 //	ft_printf("%i | %i\n", ft_find_smaller(&stack_a, 0), ft_find_best(&stack_a, len, 6));
 	ft_super_sort(&stack_a, &stack_b, len);
-	ft_printf("------------------------\n");
-	ft_print_stacks(&stack_a, &stack_b);
+//	ft_printf("------------------------\n");
+//	ft_print_stacks(&stack_a, &stack_b);
 
 	return (0);
 }
