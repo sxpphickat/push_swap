@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/18 12:19:50 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/08/18 16:29:34 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -453,30 +453,62 @@ void    ft_bubble(struct stack **list, int argc)
     }
 }
 
+int	ft_check_left_sort(struct stack** stack_a, int	pivot)
+{
+	struct stack*	temp;
+
+	temp = (*stack_a);
+	while (temp->data != pivot)
+	{
+		if (temp->data < temp->next->data)
+			temp = temp->next;
+		else
+			return (0);
+	}
+	return (1);
+}
+int	ft_get_pivot(struct stack** stack_a, int index)
+{
+	int	i;
+	struct stack*	temp;
+
+	i = 0;
+	temp = (*stack_a);
+	while (i < index)
+	{
+		temp = temp->next;
+		i++;
+	}
+	return (temp->data);
+}
+
 void	ft_quick_sort(struct stack** stack_a, struct stack** stack_b, int len)
 {
 	int	pivot;
 	int	i;
+	int	pindex;
+	int	fpart;
 
-	i = 0;
-	pivot = (*stack_a)->data;
-	ft_ra(stack_a);
-//	while (ft_sort_check(stack_a, len))
-	//while (i > 2)
-	//{
-		while ((*stack_a)->data != pivot)
+	i = 10;
+	pindex = 0;
+	pivot = ft_get_pivot(stack_a, pindex);
+	fpart = pivot;
+	while(i--)
+	{
+		ft_ra(stack_a);
+		while ((*stack_a)->data != fpart)
 		{
 			if ((*stack_a)->data < pivot)
 				ft_pb(stack_a, stack_b, len);
 			else
 				ft_ra(stack_a);
 		}
-		//pivot = (*stack_a)->data;
-		ft_rb(stack_b);
 		while ((*stack_b) != NULL)
 			ft_pa(stack_a, stack_b, len);
-		//i++;
-	//}
+		pivot = ft_get_pivot(stack_a, pindex);
+		fpart = pivot;
+	}
+	ft_printf("%i\n", pivot);
 }
 
 int	main(int argc, char *argv[])
@@ -501,11 +533,14 @@ int	main(int argc, char *argv[])
 //	ft_sort(&stack_a, &stack_b, len);
 //	ft_bubble(&stack_a, &stack_b, len);
 
-//	ft_super_sort(&stack_a, &stack_b, len);
 	ft_quick_sort(&stack_a, &stack_b, len);
+//	ft_sort(&stack_a, &stack_b, len);
+//	ft_sort(&stack_a, &stack_b, len);
+//	ft_super_sort(&stack_a, &stack_b, len);
 //	ft_bubble(&stack_a, len);
 //	ft_printf("------------------------\n");
 	ft_print_stacks(&stack_a, &stack_b);
+//	ft_printf("%i\n", ft_get_pivot(&stack_a, 0));
 
 	return (0);
 }
