@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/18 16:29:34 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/08/18 17:34:56 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -458,26 +458,29 @@ int	ft_check_left_sort(struct stack** stack_a, int	pivot)
 	struct stack*	temp;
 
 	temp = (*stack_a);
+	if (temp->data == pivot)
+		return (1);
 	while (temp->data != pivot)
 	{
 		if (temp->data < temp->next->data)
 			temp = temp->next;
 		else
-			return (0);
+			return (1);
 	}
-	return (1);
+	return (0);
 }
-int	ft_get_pivot(struct stack** stack_a, int index)
+
+int	get_pivot(struct stack** stack_a)
 {
-	int	i;
 	struct stack*	temp;
 
-	i = 0;
 	temp = (*stack_a);
-	while (i < index)
+	while (temp->next != NULL)
 	{
-		temp = temp->next;
-		i++;
+		if (temp->data < temp->next->data)
+			temp = temp->next;
+		else
+			break;
 	}
 	return (temp->data);
 }
@@ -488,12 +491,16 @@ void	ft_quick_sort(struct stack** stack_a, struct stack** stack_b, int len)
 	int	i;
 	int	pindex;
 	int	fpart;
+	int	partition;
 
-	i = 10;
+	i = 0;
 	pindex = 0;
-	pivot = ft_get_pivot(stack_a, pindex);
+	pivot = (*stack_a)->data;
 	fpart = pivot;
-	while(i--)
+	partition = fpart;
+//	while(i++ < len + 2)
+	//while (ft_sort_check(stack_a, len))
+	while(ft_check_left_sort(stack_a, partition))
 	{
 		ft_ra(stack_a);
 		while ((*stack_a)->data != fpart)
@@ -505,10 +512,15 @@ void	ft_quick_sort(struct stack** stack_a, struct stack** stack_b, int len)
 		}
 		while ((*stack_b) != NULL)
 			ft_pa(stack_a, stack_b, len);
-		pivot = ft_get_pivot(stack_a, pindex);
+		pivot = get_pivot(stack_a);
 		fpart = pivot;
+		//if (!ft_check_left_sort(stack_a, partition))
+		//{
+		//	ft_rra(stack_a);
+		//	pivot = (*stack_a)->data;
+		//	fpart = pivot;
+	//	}
 	}
-	ft_printf("%i\n", pivot);
 }
 
 int	main(int argc, char *argv[])
