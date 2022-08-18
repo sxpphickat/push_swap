@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/18 17:34:56 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/08/18 17:57:23 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -514,13 +514,24 @@ void	ft_quick_sort(struct stack** stack_a, struct stack** stack_b, int len)
 			ft_pa(stack_a, stack_b, len);
 		pivot = get_pivot(stack_a);
 		fpart = pivot;
-		//if (!ft_check_left_sort(stack_a, partition))
-		//{
-		//	ft_rra(stack_a);
-		//	pivot = (*stack_a)->data;
-		//	fpart = pivot;
-	//	}
 	}
+	ft_printf("%i\n", pivot);
+	/*while (ft_sort_check(stack_a, len))
+	{
+		ft_rra(stack_a);
+		pivot = get_pivot(stack_a);
+		fpart = pivot;
+		ft_ra(stack_a);
+		while ((*stack_a)->data != fpart)
+		{
+			if ((*stack_a)->data < pivot)
+				ft_pb(stack_a, stack_b, len);
+			else
+				ft_ra(stack_a);
+		}
+		while ((*stack_b) != NULL)
+			ft_pa(stack_a, stack_b, len);
+	}*/
 }
 
 int	main(int argc, char *argv[])
