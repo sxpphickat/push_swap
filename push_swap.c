@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/17 15:55:33 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/08/18 12:19:50 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -429,6 +429,56 @@ void	ft_double_sort(struct stack** stack_a, struct stack** stack_b, int len)
 
 }
 */
+
+void    ft_bubble(struct stack **list, int argc)
+{
+    struct stack	**temp;
+
+        temp = list;
+    unsigned int mudanca = 1;
+
+    while (mudanca)
+    {
+        mudanca = 0;
+        while((*temp)->next != NULL)
+        {
+            if ((*temp)->data > (*temp)->next->data)
+            {
+                ft_sa(temp, argc);
+                mudanca = 1;
+            }
+                temp = &(*temp)->next;
+        }
+        temp = list;
+    }
+}
+
+void	ft_quick_sort(struct stack** stack_a, struct stack** stack_b, int len)
+{
+	int	pivot;
+	int	i;
+
+	i = 0;
+	pivot = (*stack_a)->data;
+	ft_ra(stack_a);
+//	while (ft_sort_check(stack_a, len))
+	//while (i > 2)
+	//{
+		while ((*stack_a)->data != pivot)
+		{
+			if ((*stack_a)->data < pivot)
+				ft_pb(stack_a, stack_b, len);
+			else
+				ft_ra(stack_a);
+		}
+		//pivot = (*stack_a)->data;
+		ft_rb(stack_b);
+		while ((*stack_b) != NULL)
+			ft_pa(stack_a, stack_b, len);
+		//i++;
+	//}
+}
+
 int	main(int argc, char *argv[])
 {
 	struct stack*	stack_a;
@@ -451,8 +501,10 @@ int	main(int argc, char *argv[])
 //	ft_sort(&stack_a, &stack_b, len);
 //	ft_bubble(&stack_a, &stack_b, len);
 
-	ft_super_sort(&stack_a, &stack_b, len);
-	ft_printf("------------------------\n");
+//	ft_super_sort(&stack_a, &stack_b, len);
+	ft_quick_sort(&stack_a, &stack_b, len);
+//	ft_bubble(&stack_a, len);
+//	ft_printf("------------------------\n");
 	ft_print_stacks(&stack_a, &stack_b);
 
 	return (0);
