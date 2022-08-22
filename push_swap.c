@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/18 17:57:23 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/08/22 16:41:51 by sphh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,9 +267,18 @@ void ft_print_stacks(struct stack** stack_a, struct stack** stack_b)
 		if (temp_a != NULL)
 		{
 			ft_printf("%i", temp_a->data);
+			if (temp_a->data < 10)
+				write(1, "    ", 4);
+			else if (temp_a->data < 100)
+				write(1, "   ", 3);
+			else if (temp_a->data < 1000)
+				write(1, "  ", 2);
+			else
+				write(1, " ", 1);
+
 			temp_a = temp_a->next;
 		}
-		write(1, "  ", 2);
+
 		if (temp_b != NULL)
 		{
 			ft_printf("%i", temp_b->data);
@@ -394,6 +403,36 @@ int		ft_find_best(struct stack** stack_a, int len, int find)
 }
 
 void	ft_super_sort(struct stack** stack_a, struct stack** stack_b, int len)
+{
+	int	r;
+	int	small;
+	int	bhead;
+
+	bhead = (*stack_b)->data;
+	(void)stack_b;
+	small = ft_find_smaller(stack_a);
+	r = ft_find_best(stack_a, len, small);
+	while ((*stack_a) != NULL)
+	{
+		while((*stack_a)->data != small)
+		{
+			if (r == 1)
+				ft_rra(stack_a);
+			else
+				ft_ra(stack_a);
+		}
+		ft_pb(stack_a, stack_b, len);
+		if ((*stack_a) != NULL)
+		{
+			small = ft_find_smaller(stack_a);
+			r = ft_find_best(stack_a, len, small);
+		}
+	}
+	while ((*stack_b)->data != bhead)
+		ft_pa(stack_a, stack_b, len);
+}
+
+void	ft_super_sort_b(struct stack** stack_a, struct stack** stack_b, int len)
 {
 	int	r;
 	int	small;
@@ -534,13 +573,61 @@ void	ft_quick_sort(struct stack** stack_a, struct stack** stack_b, int len)
 	}*/
 }
 
+void	ft_divide(struct stack** stack_a, struct stack** stack_b, int	len)
+{
+	int	i;
+
+	i = 0;
+	while (i < len / 2)
+	{
+		ft_pb(stack_a, stack_b, len);	
+		i++;
+	}
+}
+
+void	ft_concat(struct stack** stack_a, struct stack** stack_b, int	len)
+{
+	write(1, "contat\n", 7);
+	while ((*stack_b)->next != NULL)
+	{
+		if ((*stack_b)->data < (*stack_a)->data)
+			ft_pa(stack_a, stack_b, 10);
+		else
+			ft_ra(stack_a);
+	}
+	while ((*stack_a)->data < (*stack_a)->next->data)
+	{
+		if ((*stack_b)->data < (*stack_a)->data)
+		{
+			ft_pa(stack_a, stack_b, 10);
+			break;
+		}
+		ft_ra(stack_a);
+	}
+	while ((*stack_a)->data < (*stack_a)->next->data)
+		ft_ra(stack_a);
+	if ((*stack_b))
+	{
+		ft_pa(stack_a, stack_b, 10);
+		ft_ra(stack_a);
+	}
+	ft_ra(stack_a);
+}
+
 int	main(int argc, char *argv[])
 {
 	struct stack*	stack_a;
 	struct stack*	stack_b;
 	int				len;
+	int				len_a;
+	int				len_b;
 
 	len = argc - 1;
+	len_b = len / 2;
+	if (len % 2 == 0)
+		len_a = len / 2;
+	else	
+		len_a = len / 2 + 1;
 	if (argc < 2)
 		return (0);
 	stack_a = NULL;
@@ -553,15 +640,8 @@ int	main(int argc, char *argv[])
 	}
 	ft_print_stacks(&stack_a, &stack_b);
 	ft_printf("------------------------\n");
-//	ft_sort(&stack_a, &stack_b, len);
-//	ft_bubble(&stack_a, &stack_b, len);
 
-	ft_quick_sort(&stack_a, &stack_b, len);
-//	ft_sort(&stack_a, &stack_b, len);
-//	ft_sort(&stack_a, &stack_b, len);
-//	ft_super_sort(&stack_a, &stack_b, len);
-//	ft_bubble(&stack_a, len);
-//	ft_printf("------------------------\n");
+	ft_divide(&stack_a, &stack_b, len);
 	ft_print_stacks(&stack_a, &stack_b);
 //	ft_printf("%i\n", ft_get_pivot(&stack_a, 0));
 
