@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/22 19:03:36 by sphh             ###   ########.fr       */
+/*   Updated: 2022/08/22 18:34:30 by sphh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -278,7 +278,6 @@ void ft_print_stacks(struct stack** stack_a, struct stack** stack_b)
 
 			temp_a = temp_a->next;
 		}
-		write(1, " ", 1);
 
 		if (temp_b != NULL)
 		{
@@ -618,27 +617,9 @@ void	ft_concat(struct stack** stack_a, struct stack** stack_b, int	len)
 
 void	ft_pushswap(struct stack** stack_a, struct stack** stack_b, int	len)
 {
-	ft_pb(stack_a, stack_b, len);
 	while ((*stack_a) != NULL)
 	{
 		ft_pb(stack_a, stack_b, len);
-		if ((*stack_a) && (*stack_a)->next && 
-				(*stack_b)->data < (*stack_b)->next->data && 
-				(*stack_a)->data > (*stack_a)->next->data)
-			ft_ss(stack_a, stack_b, len, len);
-		else if ((*stack_b)->data < (*stack_b)->next->data)
-			ft_sb(stack_b, len);
-	}
-	ft_pa(stack_a, stack_b, len);
-	while ((*stack_b) != NULL)
-	{
-		ft_pa(stack_a, stack_b, len);
-		if ((*stack_b) && (*stack_b)->next &&
-			       	(*stack_a)->data > (*stack_a)->next->data &&
-			       	(*stack_b)->data < (*stack_b)->next->data)
-			ft_ss(stack_a, stack_b, len, len);
-		if ((*stack_a)->data > (*stack_a)->next->data)
-			ft_sa(stack_a, len);	
 	}
 
 }
@@ -668,13 +649,11 @@ int	main(int argc, char *argv[])
 		write(2, "Error\n", 6);
 		return (0);
 	}
-//	ft_print_stacks(&stack_a, &stack_b);
-//	ft_printf("------------------------\n");
+	ft_print_stacks(&stack_a, &stack_b);
+	ft_printf("------------------------\n");
 
-	while (ft_sort_check(&stack_a, len))
-		ft_pushswap(&stack_a, &stack_b, len);
-
-//	ft_print_stacks(&stack_a, &stack_b);
+	ft_print_stacks(&stack_a, &stack_b);
+//	ft_printf("%i\n", ft_get_pivot(&stack_a, 0));
 
 	return (0);
 }
