@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/23 15:09:06 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/08/23 15:25:40 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -526,9 +526,29 @@ void	ft_divide(struct stack** stack_a, struct stack** stack_b, int	len)
 
 }
 
+void	ft_concat(struct stack** stack_a, struct stack** stack_b, int	len)
+{
+	int	small;
+
+	if ((*stack_a)->data > (*stack_b)->data)
+		small = (*stack_b)->data;
+	else
+		small = (*stack_a)->data;
+	while ((*stack_b) != NULL)
+	{
+		if ((*stack_a)->data < (*stack_b)->data)
+			ft_ra(stack_a);
+		else
+			ft_pa(stack_a, stack_b, len);
+	}
+	while ((*stack_a)->data != small)
+			ft_ra(stack_a);
+}
+
 void	ft_pushswap(struct stack** stack_a, struct stack** stack_b, int	len)
 {
 	ft_divide(stack_a, stack_b, len);
+	ft_concat(stack_a, stack_b, len);
 
 }
 
@@ -631,12 +651,10 @@ int	main(int argc, char *argv[])
 		write(2, "Error\n", 6);
 		return (0);
 	}
-	ft_print_stacks(&stack_a, &stack_b);
-	ft_printf("------------------------\n");
+//	ft_print_stacks(&stack_a, &stack_b);
+//	ft_printf("------------------------\n");
 	ft_pushswap(&stack_a, &stack_b, len);
-
-
-	ft_print_stacks(&stack_a, &stack_b);
+//	ft_print_stacks(&stack_a, &stack_b);
 
 	return (0);
 }
