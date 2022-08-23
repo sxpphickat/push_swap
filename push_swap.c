@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/23 17:29:43 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/08/23 17:32:14 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -604,12 +604,10 @@ void	ft_quick_sort(struct stack** stack_a, struct stack** stack_b, int len)
 	i = 0;
 
 	int	count = 0;
-	while (count < 1)
+	//while (count < 50)
+	while (ft_sort_check(stack_a, len))
 	{
-		if (pivot == ft_last(stack_a))
-			pivot = (*stack_a)->data;
-		else
-			pivot = ft_last(stack_a);
+		pivot = get_pivot(stack_a);
 		while (i < len)
 		{
 			if ((*stack_a)->data < pivot)
