@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/23 15:25:40 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/08/23 17:29:43 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -595,42 +595,35 @@ int	get_pivot(struct stack** stack_a)
 	return (temp->data);
 }
 
+
 void	ft_quick_sort(struct stack** stack_a, struct stack** stack_b, int len)
 {
 	int	pivot;
 	int	i;
 
 	i = 0;
-	pivot = ft_bigger(stack_a);
-		ft_ra(stack_a);
-		while ((*stack_a)->data != pivot)
-		{
-			if ((*stack_a)->data < pivot)
-				ft_pb(stack_a, stack_b, len);
-			else
-				ft_ra(stack_a);
-			if ((*stack_a)->data > (*stack_a)->next->data)
-				ft_sa(stack_a, len);
-		}
-		while ((*stack_b) != NULL)
-			ft_pa(stack_a, stack_b, len);
-	ft_printf("%i\n", pivot);
-	/*while (ft_sort_check(stack_a, len))
+
+	int	count = 0;
+	while (count < 1)
 	{
-		ft_rra(stack_a);
-		pivot = get_pivot(stack_a);
-		fpart = pivot;
-		ft_ra(stack_a);
-		while ((*stack_a)->data != fpart)
+		if (pivot == ft_last(stack_a))
+			pivot = (*stack_a)->data;
+		else
+			pivot = ft_last(stack_a);
+		while (i < len)
 		{
 			if ((*stack_a)->data < pivot)
 				ft_pb(stack_a, stack_b, len);
 			else
 				ft_ra(stack_a);
+			i++;
 		}
-		while ((*stack_b) != NULL)
+		i = 0;
+		ft_rra(stack_a);
+		while ((*stack_b))
 			ft_pa(stack_a, stack_b, len);
-	}*/
+		count++;
+	}
 }
 
 int	main(int argc, char *argv[])
@@ -651,10 +644,10 @@ int	main(int argc, char *argv[])
 		write(2, "Error\n", 6);
 		return (0);
 	}
-//	ft_print_stacks(&stack_a, &stack_b);
-//	ft_printf("------------------------\n");
-	ft_pushswap(&stack_a, &stack_b, len);
-//	ft_print_stacks(&stack_a, &stack_b);
+	ft_print_stacks(&stack_a, &stack_b);
+	ft_printf("------------------------\n");
+	ft_quick_sort(&stack_a, &stack_b, len);
+	ft_print_stacks(&stack_a, &stack_b);
 
 	return (0);
 }
