@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 CC = cc
 
-SOURCE = push_swap.c
+SOURCE = *.c
 
 RM = rm -f
 

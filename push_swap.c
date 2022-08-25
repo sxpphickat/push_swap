@@ -6,112 +6,14 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/23 17:43:02 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/08/25 12:07:52 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <limits.h>
-#include <unistd.h>
-#include "libft/libft.h"
+#include "push_swap.h"
 
 //stack
 
-struct	stack {
-	int		data;
-	struct	stack* next;
-};
-
-void ft_push(struct stack** head_ref, int	data)
-{
-	struct stack*	new_node;
-
-	new_node = (struct stack*)malloc(sizeof(struct stack)); //aloca espaço para o node;
-	new_node->data = data; // coloca os dados dentro do node;
-	new_node->next = (*head_ref); //novo node aponta para a cabeça;
-	(*head_ref) = new_node; //a cabeça agr aponta para o node;
-}
-
-void ft_append(struct stack** head_ref, int	new_data)
-{
-	struct stack*	new_node;
-	struct stack*	temp;
-
-	temp = *head_ref;
-	new_node = (struct stack*)malloc(sizeof(struct stack));
-	new_node->data = new_data; // set o valor;
-	new_node->next = NULL; //novo n´p agora ponta para NULL;
-	if (temp == NULL)
-	{
-		temp = new_node;
-		return ;
-	}
-	while (temp->next != NULL) //percorre a lista até o ultimo nó;
-		temp = temp->next;
-	temp->next = new_node; //o antigo ultimo agr aponta para o novo nó;
-}
-
-void ft_insert_after(struct stack*	node, int	new_data)
-{
-	struct stack*	new_node;
-
-	new_node = (struct stack*)malloc(sizeof(struct stack));
-	new_node->data = new_data;
-	new_node->next = node->next;
-	node->next = new_node;
-}
-
-void	ft_sa(struct stack** stack_a, int	len)
-{
-	struct stack*	node_one;
-	struct stack*	node_two;
-
-	if (len < 2)
-		return ;
-	node_one = (*stack_a);
-	node_two = (*stack_a)->next;
-	*stack_a = node_two;
-	node_one->next = node_two->next;
-	node_two->next = node_one;
-	write(1, "sa\n", 3);
-}
-
-void	ft_sb(struct stack** stack_b, int	len)
-{
-	struct stack*	node_one;
-	struct stack*	node_two;
-
-	if (len < 2)
-		return ;
-	node_one = (*stack_b);
-	node_two = (*stack_b)->next;
-	*stack_b = node_two;
-	node_one->next = node_two->next;
-	node_two->next = node_one;
-	write(1, "sb\n", 3);
-}
-
-void ft_ss(struct stack** stack_a, struct stack** stack_b, int len_a, int len_b)
-{
-	struct stack*	node_one;
-	struct stack*	node_two;
-	struct stack*	node_one_b;
-	struct stack*	node_two_b;
-
-	if (len_a < 2 || len_b < 2)
-		return ;
-	node_one = (*stack_a);
-	node_two = (*stack_a)->next;
-	*stack_a = node_two;
-	node_one->next = node_two->next;
-	node_two->next = node_one;
-	node_one_b = (*stack_b);
-	node_two_b = (*stack_b)->next;
-	*stack_b = node_two_b;
-	node_one_b->next = node_two_b->next;
-	node_two_b->next = node_one_b;
-	write(1, "ss\n", 3);
-}
 
 void	ft_create_x(struct stack** stack_a, char *argv[], int len)
 {
@@ -137,123 +39,6 @@ void	ft_print_list(struct stack** list_head, char ab)
 		ft_printf("NULL\n");
 }
 
-void	ft_pop(struct stack** stack_x)
-{
-	struct stack* temp;
-
-	if ((*stack_x) == NULL)
-		return ;
-	temp = (*stack_x);
-	(*stack_x) = temp->next;
-	temp = NULL;      //deleta o conteudo;
-	free(temp);
-}
-
-void ft_pa(struct stack** stack_a, struct stack** stack_b, int len_b)
-{
-	if ((*stack_b) == NULL)
-		return ;
-	if (len_b == 0)
-		return ;
-	ft_push(stack_a, (*stack_b)->data);
-	ft_pop(stack_b);
-	write(1, "pa\n", 3);
-}
-
-void ft_pb(struct stack** stack_a, struct stack** stack_b, int len_a)
-{
-	if ((*stack_a) == NULL)
-		return ;
-	if (len_a == 0)
-		return ;
-	ft_push(stack_b, (*stack_a)->data);
-	ft_pop(stack_a);
-	write(1, "pb\n", 3);
-}
-
-void ft_ra(struct stack** stack_a)
-{
-	ft_append(stack_a, (*stack_a)->data);
-	ft_pop(stack_a);
-	write(1, "ra\n", 3);
-}
-
-void ft_rb(struct stack** stack_b)
-{
-	ft_append(stack_b, (*stack_b)->data);
-	ft_pop(stack_b);
-	write(1, "rb\n", 3);
-}
-
-void ft_rr(struct stack** stack_a, struct stack** stack_b)
-{
-	ft_append(stack_a, (*stack_a)->data);
-	ft_pop(stack_a);
-	ft_append(stack_b, (*stack_b)->data);
-	ft_pop(stack_b);
-	write(1, "rr\n", 3);
-}
-
-void ft_rra(struct stack** stack_a)
-{
-	struct stack*	temp;
-	struct stack*	temp_free;
-
-	if ((*stack_a)->next == NULL)
-		return ;
-	temp = (*stack_a);
-	while (temp->next->next != NULL)
-		temp = temp->next;
-	ft_push(stack_a, temp->next->data);
-	temp_free = temp->next;
-	free(temp_free);
-	temp->next = NULL;
-	write(1, "rra\n", 4);
-}
-
-void ft_rrb(struct stack** stack_b)
-{
-	struct stack*	temp;
-	struct stack*	temp_free;
-
-	if ((*stack_b)->next == NULL)
-		return ;
-	temp = (*stack_b);
-	while (temp->next->next != NULL)
-		temp = temp->next;
-	ft_push(stack_b, temp->next->data);
-	temp_free = temp->next;
-	free(temp_free);
-	temp->next = NULL;
-	write(1, "rrb\n", 4);
-}
-
-void ft_rrr(struct stack** stack_a, struct stack** stack_b)
-{
-	struct stack*	temp;
-	struct stack*	temp_free;
-	struct stack*	temp_b;
-	struct stack*	temp_free_b;
-
-	if ((*stack_a)->next == NULL || (*stack_b)->next == NULL)
-		return ;
-	temp = (*stack_a);
-	while (temp->next->next != NULL)
-		temp = temp->next;
-	ft_push(stack_a, temp->next->data);
-	temp_free = temp->next;
-	free(temp_free);
-	temp->next = NULL;
-	temp_b = (*stack_b);
-	while (temp_b->next->next != NULL)
-		temp_b = temp_b->next;
-	ft_push(stack_b, temp_b->next->data);
-	temp_free_b = temp_b->next;
-	free(temp_free_b);
-	temp_b->next = NULL;
-	write(1, "rrr\n", 4);
-}
-
 void ft_print_stacks(struct stack** stack_a, struct stack** stack_b)
 {
 	struct stack*	temp_b;
@@ -267,19 +52,9 @@ void ft_print_stacks(struct stack** stack_a, struct stack** stack_b)
 		if (temp_a != NULL)
 		{
 			ft_printf("%i", temp_a->data);
-		//	if (temp_a->data < 10)
-		//		write(1, "    ", 4);
-		//	else if (temp_a->data < 100)
-		//		write(1, "   ", 3);
-		//	else if (temp_a->data < 1000)
-		//		write(1, "  ", 2);
-		//	else
-		//		write(1, " ", 1);
-
 			temp_a = temp_a->next;
 		}
 		write(1, "   ", 3);
-
 		if (temp_b != NULL)
 		{
 			ft_printf("%i", temp_b->data);
@@ -323,12 +98,12 @@ void	ft_sort(struct stack** stack_a, struct stack** stack_b, int	len)
 	while (ft_sort_check(stack_a, len))
 	{
 		if ((*stack_a)->data > (*stack_a)->next->data)
-			ft_sa(stack_a, len);
-		ft_ra(stack_a);
+			sa(stack_a);
+		ra(stack_a);
 		i++;
 		if (i == len - 1)
 		{
-			ft_ra(stack_a);
+			ra(stack_a);
 			i = 0;
 		}
 	}
@@ -423,36 +198,6 @@ void	ft_super_sort(struct stack** stack_a, struct stack** stack_b, int len)
 {
 	int	r;
 	int	small;
-	int	bhead;
-
-	bhead = (*stack_b)->data;
-	(void)stack_b;
-	small = ft_smaller(stack_a);
-	r = ft_find_best(stack_a, len, small);
-	while ((*stack_a) != NULL)
-	{
-		while((*stack_a)->data != small)
-		{
-			if (r == 1)
-				ft_rra(stack_a);
-			else
-				ft_ra(stack_a);
-		}
-		ft_pb(stack_a, stack_b, len);
-		if ((*stack_a) != NULL)
-		{
-			small = ft_smaller(stack_a);
-			r = ft_find_best(stack_a, len, small);
-		}
-	}
-	while ((*stack_b)->data != bhead)
-		ft_pa(stack_a, stack_b, len);
-}
-
-void	ft_super_sort_b(struct stack** stack_a, struct stack** stack_b, int len)
-{
-	int	r;
-	int	small;
 
 	(void)stack_b;
 	small = ft_smaller(stack_a);
@@ -462,11 +207,11 @@ void	ft_super_sort_b(struct stack** stack_a, struct stack** stack_b, int len)
 		while((*stack_a)->data != small)
 		{
 			if (r == 1)
-				ft_rra(stack_a);
+				rra(stack_a);
 			else
-				ft_ra(stack_a);
+				ra(stack_a);
 		}
-		ft_pb(stack_a, stack_b, len);
+		pb(stack_a, stack_b);
 		if ((*stack_a) != NULL)
 		{
 			small = ft_smaller(stack_a);
@@ -474,82 +219,7 @@ void	ft_super_sort_b(struct stack** stack_a, struct stack** stack_b, int len)
 		}
 	}
 	while ((*stack_b) != NULL)
-		ft_pa(stack_a, stack_b, len);
-}
-
-void	ft_divide(struct stack** stack_a, struct stack** stack_b, int	len)
-{
-	int	i;
-
-	i = 1;
-	ft_pb(stack_a, stack_b, len);
-	while (i < len / 2)
-	{
-		ft_pb(stack_a, stack_b, len);
-		if ((*stack_a) && (*stack_a)->next && 
-				(*stack_b)->data > (*stack_b)->next->data && 
-				(*stack_a)->data > (*stack_a)->next->data)
-			ft_ss(stack_a, stack_b, len, len);
-		else if ((*stack_b)->data > (*stack_b)->next->data)
-			ft_sb(stack_b, len);
-		else if ((*stack_a) && (*stack_a)->next && (*stack_a)->data > (*stack_a)->next->data)
-			ft_sa(stack_a, len);
-		i++;
-	}
-	i = 0;
-
-	int	small_a = ft_smaller(stack_a);
-	int	op = 1;
-	while (ft_sort_check(stack_a, len / 2))
-	{
-		if ((*stack_a)->data > (*stack_a)->next->data && (*stack_b)->data > (*stack_b)->next->data)
-			ft_ss(stack_a, stack_b, len, len);
-		else if ((*stack_a)->data > (*stack_a)->next->data)
-			ft_sa(stack_a, len);
-		else if ((*stack_b)->data > (*stack_b)->next->data)
-			ft_sb(stack_b, len);
-		if (op == 1)
-			ft_rrr(stack_a, stack_b);
-		else if (op == 0)
-			ft_rr(stack_a, stack_b);
-		i++;
-		if (i == len / 2 - 1)
-		{
-			if (op == 0)
-				ft_rrr(stack_a, stack_b);
-			else if (op == 1)
-				ft_rr(stack_a, stack_b);
-			op = !op;
-			i = 0;
-		}
-	}
-
-}
-
-void	ft_concat(struct stack** stack_a, struct stack** stack_b, int	len)
-{
-	int	small;
-
-	if ((*stack_a)->data > (*stack_b)->data)
-		small = (*stack_b)->data;
-	else
-		small = (*stack_a)->data;
-	while ((*stack_b) != NULL)
-	{
-		if ((*stack_a)->data < (*stack_b)->data)
-			ft_ra(stack_a);
-		else
-			ft_pa(stack_a, stack_b, len);
-	}
-	while ((*stack_a)->data != small)
-			ft_ra(stack_a);
-}
-
-void	ft_pushswap(struct stack** stack_a, struct stack** stack_b, int	len)
-{
-	ft_divide(stack_a, stack_b, len);
-	ft_concat(stack_a, stack_b, len);
-
+		pa(stack_a, stack_b);
 }
 
 int		ft_last(struct stack** stack_a)
@@ -599,29 +269,35 @@ int	get_pivot(struct stack** stack_a)
 void	ft_quick_sort(struct stack** stack_a, struct stack** stack_b, int len)
 {
 	int	pivot;
-	int	i;
 
-	i = 0;
-
-	int	count = 0;
-	//while (count < 50)
-	while (ft_sort_check(stack_a, len))
+	(void)len;
+	(void)stack_b;
+	pivot = ft_last(stack_a);
+//	while (ft_smaller(stack_a) < pivot)
+	while ((*stack_a)->next)
 	{
-		pivot = get_pivot(stack_a);
-		while (i < len)
+		if ((*stack_a)->next && (*stack_a)->data < pivot && (*stack_a)->data == ft_smaller(stack_a))
+			pb(stack_a, stack_b);
+		else
+			ra(stack_a);
+		if ((*stack_a)->next && ft_smaller(stack_a) == pivot && pivot == ft_last(stack_a))
 		{
-			if ((*stack_a)->data < pivot)
-				ft_pb(stack_a, stack_b, len);
-			else
-				ft_ra(stack_a);
-			i++;
+			rra(stack_a);
+			pb(stack_a, stack_b);
+			pivot = ft_last(stack_a);
 		}
-		i = 0;
-		ft_rra(stack_a);
-		while ((*stack_b))
-			ft_pa(stack_a, stack_b, len);
-		count++;
+		if (ft_smaller(stack_a) == pivot)
+			pivot = ft_last(stack_a);
 	}
+	while ((*stack_b))
+		pa(stack_a, stack_b);
+}
+
+void	ft_three(struct stack** stack_a, struct stack** stack_b)
+{
+	(void)(*stack_a);
+	(void)(*stack_b);
+	
 }
 
 int	main(int argc, char *argv[])
@@ -644,7 +320,7 @@ int	main(int argc, char *argv[])
 	}
 	ft_print_stacks(&stack_a, &stack_b);
 	ft_printf("------------------------\n");
-	ft_quick_sort(&stack_a, &stack_b, len);
+
 	ft_print_stacks(&stack_a, &stack_b);
 
 	return (0);
