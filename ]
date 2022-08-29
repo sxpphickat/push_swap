@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/29 16:21:22 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/08/29 15:17:52 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -331,31 +331,28 @@ int		ft_next(struct stack** a, int better)
 	return(small);
 }
 
-#include <stdio.h>
-#include <signal.h>
-
 void	ft_index(struct stack** a, int len)
 {
 	int	smaller;
 	struct stack* temp;
-	struct stack* head;
 	int	i;
 
 	(void)len;
 	i = 1;
 	temp = (*a);
-	head = (*a);
 	smaller = ft_smaller(a);
-	while (i <= len)
+//		ft_printf("out %i\n", smaller);
+	while (i < len)
 	{
-		while (temp->data != smaller && temp->next)
+		while (temp->data != smaller)
 			temp = temp->next;
 		temp->index = i;
-		smaller = ft_next(a, smaller);
-		temp = head;
 		i++;
-		//ft_printf("a"); // kkkkkkkkkkkk só funciona se tiver o printf;
+		temp = (*a);
+		smaller = ft_next(a, smaller);
+//		ft_printf("out %i\n", smaller);
 	}
+
 }
 
 void	ft_radix(struct stack** a, struct stack** b, int len)
@@ -418,12 +415,10 @@ int	main(int argc, char *argv[])
 	ft_printf("------------------------\n");
 	//ft_radix(&stack_a, &stack_b, len);
 	ft_index(&stack_a, len);
-	ft_printf("i: %i\n", stack_a->index);
-	ft_printf("i: %i\n", stack_a->next->index);
-	ft_printf("i: %i\n", stack_a->next->next->index);
-	ft_printf("i: %i\n", stack_a->next->next->next->index);
-	ft_printf("i: %i\n", stack_a->next->next->next->next->index);
-	ft_printf("i: %i\n", stack_a->next->next->next->next->next->index);
+	ft_printf("%i\n", stack_a->index);
+	ft_printf("%i\n", stack_a->next->index);
+	ft_printf("%i\n", stack_a->next->next->index);
+	ft_printf("%i\n", stack_a->next->next->next->index);
 
 	ft_print_stacks(&stack_a, &stack_b);
 
