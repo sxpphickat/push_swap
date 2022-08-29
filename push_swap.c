@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/29 16:21:22 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/08/29 16:55:55 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void ft_print_stacks(struct stack** stack_a, struct stack** stack_b)
 	{
 		if (temp_a != NULL)
 		{
-			ft_printf("%i", temp_a->data);
+			ft_printf("%i -> %i", temp_a->data, temp_a->index);
 			temp_a = temp_a->next;
 		}
 		write(1, "   ", 3);
@@ -65,6 +65,26 @@ void ft_print_stacks(struct stack** stack_a, struct stack** stack_b)
 	write(1, "\n", 1);
 	write(1, "-  -\n", 5);
 	write(1, "a  b\n", 5);
+}
+
+void	fsa(struct stack** stack_a)
+{
+	struct stack*	node_one;
+	struct stack*	node_two;
+
+	if ((*stack_a)->next == NULL)
+		return ;
+	node_one = (*stack_a);
+	node_two = (*stack_a)->next;
+	*stack_a = node_two;
+	node_one->next = node_two->next;
+	node_two->next = node_one;
+}
+
+void	fra(struct stack** stack_a)
+{
+	ft_append(stack_a, (*stack_a)->data);
+	ft_pop(stack_a);
 }
 
 int	ft_sort_check(struct stack** stack_a, int	len)
@@ -104,6 +124,26 @@ void	ft_sort(struct stack** stack_a, struct stack** stack_b, int	len)
 		if (i == len - 1)
 		{
 			ra(stack_a);
+			i = 0;
+		}
+	}
+}
+
+void	ft_fake_sort(struct stack** stack_a, struct stack** stack_b, int	len)
+{
+	int		i;
+
+	i = 0;
+	(void)(*stack_b);
+	while (ft_sort_check(stack_a, len))
+	{
+		if ((*stack_a)->data > (*stack_a)->next->data)
+			fsa(stack_a);
+		fra(stack_a);
+		i++;
+		if (i == len - 1)
+		{
+			fra(stack_a);
 			i = 0;
 		}
 	}
@@ -316,56 +356,34 @@ void    ft_concat(struct stack** stack_a, struct stack** stack_b)
             ra(stack_a);
 }
 
-int		ft_next(struct stack** a, int better)
+void	ft_index(struct stack **a, struct stack** f)
 {
-	struct stack* temp;
-	int	small;
-
-	temp = (*a);
-	while(temp->next != NULL)
-	{
-		if (temp->data < small && temp->data > better)
-			small = temp->data;
-		temp = temp->next;
-	}
-	return(small);
-}
-
-#include <stdio.h>
-#include <signal.h>
-
-void	ft_index(struct stack** a, int len)
-{
-	int	smaller;
-	struct stack* temp;
-	struct stack* head;
 	int	i;
+	struct stack *temp;
+	struct stack *tempf;
 
-	(void)len;
-	i = 1;
 	temp = (*a);
-	head = (*a);
-	smaller = ft_smaller(a);
-	while (i <= len)
+	tempf = (*f);
+
+	i = 1;
+	while (tempf)
 	{
-		while (temp->data != smaller && temp->next)
+		while (temp->data != tempf->data)
 			temp = temp->next;
 		temp->index = i;
-		smaller = ft_next(a, smaller);
-		temp = head;
 		i++;
-		//ft_printf("a"); // kkkkkkkkkkkk só funciona se tiver o printf;
+		temp = (*a);
+		tempf = tempf->next;
 	}
 }
+
 
 void	ft_radix(struct stack** a, struct stack** b, int len)
 {
 	int	i;
 	int	j;
 	int	bl;
-//	int	big;
 
-//	big = ft_bigger(a);
 	j = 0;
 	i = 0;
 	bl = 0;
@@ -400,6 +418,7 @@ int	main(int argc, char *argv[])
 {
 	struct stack*	stack_a;
 	struct stack*	stack_b;
+	struct stack*	fake_a;
 	int				len;
 
 	len = argc - 1;
@@ -409,22 +428,19 @@ int	main(int argc, char *argv[])
 	stack_a = NULL;
 	stack_b = NULL;
 	ft_create_x(&stack_a, argv, len);
+	ft_create_x(&fake_a, argv, len);
 	if (ft_repeat_check(&stack_a))
 	{
 		write(2, "Error\n", 6);
 		return (0);
 	}
-	ft_print_stacks(&stack_a, &stack_b);
-	ft_printf("------------------------\n");
-	//ft_radix(&stack_a, &stack_b, len);
-	ft_index(&stack_a, len);
-	ft_printf("i: %i\n", stack_a->index);
-	ft_printf("i: %i\n", stack_a->next->index);
-	ft_printf("i: %i\n", stack_a->next->next->index);
-	ft_printf("i: %i\n", stack_a->next->next->next->index);
-	ft_printf("i: %i\n", stack_a->next->next->next->next->index);
-	ft_printf("i: %i\n", stack_a->next->next->next->next->next->index);
-
+	//ft_print_stacks(&stack_a, &stack_b);
+	//ft_printf("------------------------\n");
+	//ft_print_stacks(&stack_a, &stack_b);
+	ft_fake_sort(&fake_a, &fake_a, len);
+	ft_index(&stack_a, &fake_a);
+	//ft_print_stacks(&fake_a, &stack_b);
+	ft_radix(&stack_a, &stack_b, len);
 	ft_print_stacks(&stack_a, &stack_b);
 
 	return (0);
