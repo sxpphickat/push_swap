@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/29 16:55:55 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/08/29 17:23:50 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -314,8 +314,8 @@ int    ft_max_value(struct stack **list)
     max = 0;
     while (*aux != NULL)
     {
-        if ((*aux)->data > max)
-            max = (*aux)->data;
+        if ((*aux)->index > max)
+            max = (*aux)->index;
         aux = &(*aux)->next;
     }
     return (max);
@@ -327,18 +327,18 @@ void    ft_concat(struct stack** stack_a, struct stack** stack_b)
     int a_max;
 
     a_max = ft_max_value(stack_a);
-    if ((*stack_a)->data > (*stack_b)->data)
-        small = (*stack_b)->data;
+    if ((*stack_a)->index > (*stack_b)->index)
+        small = (*stack_b)->index;
     else
-        small = (*stack_a)->data;
+        small = (*stack_a)->index;
     while ((*stack_b) != NULL)
     {
-        if ((*stack_a)->data < (*stack_b)->data)
+        if ((*stack_a)->index < (*stack_b)->index)
         {
-            if((*stack_b)->data > a_max)
+            if((*stack_b)->index > a_max)
             {
-                a_max = (*stack_a)->data;
-                while ((*stack_a)->data != small)
+                a_max = (*stack_a)->index;
+                while ((*stack_a)->index != small)
                     ra(stack_a);
                 pa(stack_a, stack_b);
                 ra(stack_a);
@@ -352,7 +352,7 @@ void    ft_concat(struct stack** stack_a, struct stack** stack_b)
             ra(stack_a);
         }
     }
-    while ((*stack_a)->data != small)
+    while ((*stack_a)->index != small)
             ra(stack_a);
 }
 
@@ -378,21 +378,22 @@ void	ft_index(struct stack **a, struct stack** f)
 }
 
 
-void	ft_radix(struct stack** a, struct stack** b, int len)
+void	ft_radix(struct stack** a, struct stack** b,struct stack** fake_a, int len)
 {
 	int	i;
 	int	j;
 	int	bl;
 
+	ft_index(a, fake_a);
+	ft_print_stacks(a, b);
 	j = 0;
 	i = 0;
 	bl = 0;
-	(void)len;
 	while (i < 7)
 	{
 		while (j < len)
 		{
-			if ((*a)->data & (1 << i))
+			if ((*a)->index & (1 << i))
 				ra(a);
 			else
 				pb(a, b);
@@ -402,15 +403,6 @@ void	ft_radix(struct stack** a, struct stack** b, int len)
 			pa(a, b);
 		j = 0;
 		i++;
-	}
-	if (ft_last(a) < 0)
-	{
-		while (ft_last(a) < 0)
-		{
-			rra(a);
-			pb(a, b);
-		}
-		ft_concat(a, b);
 	}
 }
 
@@ -438,9 +430,10 @@ int	main(int argc, char *argv[])
 	//ft_printf("------------------------\n");
 	//ft_print_stacks(&stack_a, &stack_b);
 	ft_fake_sort(&fake_a, &fake_a, len);
-	ft_index(&stack_a, &fake_a);
+//	ft_index(&stack_a, &fake_a);
+	//ft_print_stacks(&stack_a, &stack_b);
 	//ft_print_stacks(&fake_a, &stack_b);
-	ft_radix(&stack_a, &stack_b, len);
+	ft_radix(&stack_a, &stack_b, &fake_a, len);
 	ft_print_stacks(&stack_a, &stack_b);
 
 	return (0);
