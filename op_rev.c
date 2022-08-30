@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 10:39:32 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/25 11:00:47 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/08/30 09:41:24 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	rra(struct stack** stack_a)
 	temp = (*stack_a);
 	while (temp->next->next != NULL)
 		temp = temp->next;
-	ft_push(stack_a, temp->next->data);
+	ft_push(stack_a, temp->next->data, temp->next->index);
 	temp_free = temp->next;
 	free(temp_free);
 	temp->next = NULL;
@@ -39,7 +39,7 @@ void	rrb(struct stack** stack_b)
 	temp = (*stack_b);
 	while (temp->next->next != NULL)
 		temp = temp->next;
-	ft_push(stack_b, temp->next->data);
+	ft_push(stack_b, temp->next->data, temp->next->index);
 	temp_free = temp->next;
 	free(temp_free);
 	temp->next = NULL;
@@ -58,14 +58,14 @@ void	rrr(struct stack** stack_a, struct stack** stack_b)
 	temp = (*stack_a);
 	while (temp->next->next != NULL)
 		temp = temp->next;
-	ft_push(stack_a, temp->next->data);
+	ft_push(stack_a, temp->next->data, temp->next->index);
 	temp_free = temp->next;
 	free(temp_free);
 	temp->next = NULL;
 	temp_b = (*stack_b);
 	while (temp_b->next->next != NULL)
 		temp_b = temp_b->next;
-	ft_push(stack_b, temp_b->next->data);
+	ft_push(stack_b, temp_b->next->data, temp_b->next->index);
 	temp_free_b = temp_b->next;
 	free(temp_free_b);
 	temp_b->next = NULL;

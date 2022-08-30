@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 14:25:35 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/29 14:16:30 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/08/30 09:46:03 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 #include "libft/libft.h"
 
 struct	stack {
-	int		data;
-	int		index;
-	struct	stack* next;
+	int				data;
+	unsigned int	index;
+	struct	stack*	next;
 };
 
-void	ft_push(struct stack** head_ref, int	data);
-void	ft_append(struct stack** head_ref, int	new_data);
-void	ft_insert_after(struct stack*	node, int	new_data);
+void	ft_push(struct stack** head_ref, int	data, unsigned int index);
+void	ft_append(struct stack** head_ref, int	new_data, unsigned int index);
+void	ft_insert_after(struct stack*	node, int	new_data, unsigned int index);
 void	ft_pop(struct stack** stack_x);
 
 void	sa(struct stack** stack_a);

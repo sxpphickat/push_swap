@@ -18,7 +18,7 @@
 void	ft_create_x(struct stack** stack_a, char *argv[], int len)
 {
 	while (len >= 1)
-		ft_push(stack_a, ft_atoi(argv[len--])); // tirar atoi;
+		ft_push(stack_a, ft_atoi(argv[len--]), 0); // tirar atoi;
 }
 
 void	ft_print_list(struct stack** list_head, char ab)
@@ -83,7 +83,7 @@ void	fsa(struct stack** stack_a)
 
 void	fra(struct stack** stack_a)
 {
-	ft_append(stack_a, (*stack_a)->data);
+	ft_append(stack_a, (*stack_a)->data, (*stack_a)->index);
 	ft_pop(stack_a);
 }
 
@@ -307,8 +307,8 @@ int	get_pivot(struct stack** stack_a)
 
 int    ft_max_value(struct stack **list)
 {
-    struct stack    **aux;
-    int max;
+    struct stack	**aux;
+    unsigned int	max;
 
     aux = list;
     max = 0;
@@ -323,8 +323,8 @@ int    ft_max_value(struct stack **list)
 
 void    ft_concat(struct stack** stack_a, struct stack** stack_b)
 {
-    int    small;
-    int a_max;
+    unsigned int	small;
+    unsigned int	a_max;
 
     a_max = ft_max_value(stack_a);
     if ((*stack_a)->index > (*stack_b)->index)
@@ -365,7 +365,7 @@ void	ft_index(struct stack **a, struct stack** f)
 	temp = (*a);
 	tempf = (*f);
 
-	i = 1;
+	i = 0;
 	while (tempf)
 	{
 		while (temp->data != tempf->data)
@@ -385,11 +385,10 @@ void	ft_radix(struct stack** a, struct stack** b,struct stack** fake_a, int len)
 	int	bl;
 
 	ft_index(a, fake_a);
-	ft_print_stacks(a, b);
 	j = 0;
 	i = 0;
 	bl = 0;
-	while (i < 7)
+	while (ft_sort_check(a, len))
 	{
 		while (j < len)
 		{
@@ -401,8 +400,8 @@ void	ft_radix(struct stack** a, struct stack** b,struct stack** fake_a, int len)
 		}
 		while ((*b))
 			pa(a, b);
-		j = 0;
 		i++;
+		j = 0;
 	}
 }
 
