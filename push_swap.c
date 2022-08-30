@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/29 17:23:50 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/08/30 16:45:40 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void ft_print_stacks(struct stack** stack_a, struct stack** stack_b)
 		write(1, "   ", 3);
 		if (temp_b != NULL)
 		{
-			ft_printf("%i", temp_b->data);
+			ft_printf("%i -> %i", temp_b->data, temp_b ->index);
 			temp_b = temp_b->next;
 		}
 		write(1, "\n", 1);
@@ -377,6 +377,20 @@ void	ft_index(struct stack **a, struct stack** f)
 	}
 }
 
+int		ft_len(struct stack** x)
+{
+	int	i;
+	struct stack* temp;
+
+	temp = (*x);
+	i = 0;
+	while (temp)
+	{
+		temp = temp->next;
+		i++;
+	}
+	return (i);
+}
 
 void	ft_radix(struct stack** a, struct stack** b,struct stack** fake_a, int len)
 {
@@ -387,9 +401,10 @@ void	ft_radix(struct stack** a, struct stack** b,struct stack** fake_a, int len)
 	ft_index(a, fake_a);
 	j = 0;
 	i = 0;
-	bl = 0;
-	while (ft_sort_check(a, len))
+//	while (ft_sort_check(a, len))
+	while ((*a))
 	{
+		len = ft_len(a);
 		while (j < len)
 		{
 			if ((*a)->index & (1 << i))
@@ -398,11 +413,21 @@ void	ft_radix(struct stack** a, struct stack** b,struct stack** fake_a, int len)
 				pb(a, b);
 			j++;
 		}
-		while ((*b))
-			pa(a, b);
 		i++;
 		j = 0;
+		bl = ft_len(b);
+		while (j < bl)
+		{
+			if ((*b)->index & (1 << i))
+				pa(a, b);
+			else
+				rb(b);
+			j++;
+		}
+		j = 0;
 	}
+	while((*b))
+		pa(a, b);
 }
 
 int	main(int argc, char *argv[])
@@ -423,7 +448,7 @@ int	main(int argc, char *argv[])
 	if (ft_repeat_check(&stack_a))
 	{
 		write(2, "Error\n", 6);
-		return (0);
+		return (666);
 	}
 	//ft_print_stacks(&stack_a, &stack_b);
 	//ft_printf("------------------------\n");
