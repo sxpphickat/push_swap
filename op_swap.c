@@ -12,10 +12,10 @@
 
 #include "push_swap.h"
 
-void	sa(struct stack** stack_a)
+void	sa(struct s_stack **stack_a)
 {
-	struct stack*	node_one;
-	struct stack*	node_two;
+	struct s_stack	*node_one;
+	struct s_stack	*node_two;
 
 	if ((*stack_a)->next == NULL)
 		return ;
@@ -27,10 +27,10 @@ void	sa(struct stack** stack_a)
 	write(1, "sa\n", 3);
 }
 
-void	sb(struct stack** stack_b)
+void	sb(struct s_stack **stack_b)
 {
-	struct stack*	node_one;
-	struct stack*	node_two;
+	struct s_stack	*node_one;
+	struct s_stack	*node_two;
 
 	if ((*stack_b)->next == NULL)
 		return ;
@@ -42,12 +42,12 @@ void	sb(struct stack** stack_b)
 	write(1, "sb\n", 3);
 }
 
-void	ss(struct stack** stack_a, struct stack** stack_b)
+void	ss(struct s_stack **stack_a, struct s_stack **stack_b)
 {
-	struct stack*	node_one;
-	struct stack*	node_two;
-	struct stack*	node_one_b;
-	struct stack*	node_two_b;
+	struct s_stack	*node_one;
+	struct s_stack	*node_two;
+	struct s_stack	*node_one_b;
+	struct s_stack	*node_two_b;
 
 	if ((*stack_a)->next == NULL || (*stack_b)->next == NULL)
 		return ;
