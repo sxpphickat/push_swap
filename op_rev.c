@@ -14,8 +14,8 @@
 
 void	rra(struct s_stack **stack_a)
 {
-	struct s_stack	temp;
-	struct s_stack	temp_free;
+	struct s_stack	*temp;
+	struct s_stack	*temp_free;
 
 	if ((*stack_a)->next == NULL)
 		return ;

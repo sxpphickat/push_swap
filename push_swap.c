@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/31 11:59:30 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/01 10:24:01 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,7 +261,7 @@ void	ft_super_sort(struct s_stack **stack_a, struct s_stack **stack_b, int len)
 
 int		ft_last(struct s_stack **stack_a)
 {
-	struct stack *temp;
+	struct s_stack *temp;
 
 	temp = (*stack_a);
 	while (temp->next)
@@ -356,8 +356,8 @@ void    ft_concat(struct s_stack **stack_a, struct s_stack **stack_b)
 void	ft_index(struct s_stack **a, struct s_stack **f)
 {
 	int				i;
-	struct stack	*temp;
-	struct stack	*tempf;
+	struct s_stack	*temp;
+	struct s_stack	*tempf;
 
 	temp = (*a);
 	tempf = (*f);
@@ -393,15 +393,15 @@ void	ft_radix(struct s_stack **a, struct s_stack **b,struct s_stack **fake_a, in
 {
 	int	i;
 	int	j;
-	int	bl;
+//	int	bl;
 
 	ft_index(a, fake_a);
 	j = 0;
 	i = 0;
-//	while (ft_sort_check(a, len))
-	while ((*a))
+	while (ft_sort_check(a, len))
+//	while ((*a))
 	{
-		len = ft_len(a);
+//		len = ft_len(a);
 		while (j < len)
 		{
 			if ((*a)->index & (1 << i))
@@ -414,8 +414,8 @@ void	ft_radix(struct s_stack **a, struct s_stack **b,struct s_stack **fake_a, in
 		j = 0;
 		while((*b))
 			pa(a, b);
-		bl = ft_len(b);
-		while (j < bl)
+//		bl = ft_len(b);
+/*		while (j < bl)
 		{
 			if ((*b)->index & (1 << i))
 				pa(a, b);
@@ -423,7 +423,8 @@ void	ft_radix(struct s_stack **a, struct s_stack **b,struct s_stack **fake_a, in
 				rb(b);
 			j++;
 		}
-		j = 0;
+		*/
+//		j = 0;
 	}
 }
 
@@ -447,15 +448,16 @@ int	main(int argc, char *argv[])
 		write(2, "Error\n", 6);
 		return (666);
 	}
-	//ft_print_stacks(&stack_a, &stack_b);
-	//ft_printf("------------------------\n");
-	//ft_print_stacks(&stack_a, &stack_b);
+//	ft_print_stacks(&stack_a, &stack_b);
+//	ft_printf("------------------------\n");
+	if (len == 3)
+		ft_three(&stack_a);
+	else if (len <= 5)
+		ft_five(&stack_a, &stack_b, len);
+
 	ft_fake_sort(&fake_a, &fake_a, len);
-//	ft_index(&stack_a, &fake_a);
-	//ft_print_stacks(&stack_a, &stack_b);
-	//ft_print_stacks(&fake_a, &stack_b);
-	ft_radix(&stack_a, &stack_b, &fake_a, len);
-	ft_print_stacks(&stack_a, &stack_b);
+//	ft_radix(&stack_a, &stack_b, &fake_a, len);
+//	ft_print_stacks(&stack_a, &stack_b);
 
 	return (0);
 }
