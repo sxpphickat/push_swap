@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/01 10:24:01 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/05 10:48:20 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -442,17 +442,20 @@ void	ft_radix2(struct s_stack **a, struct s_stack **b,struct s_stack **fake_a, i
 void	ft_chunk(struct s_stack **a, struct s_stack **b,struct s_stack **fake_a, int len)
 {
 	unsigned int	chunk;
-	int	j;
+	int				j;
+	int				bigg;
+	int				r;
 
 	j = 0;
+	r = 0;
 	ft_index(a, fake_a);
 	chunk = 30;
-	while ((*a))
+	while ((*a)->next)
 	{
 		while (j < len)
 		{
 			if ((*a)->next == NULL)
-				return  ;
+				break  ;
 			if ((*a)->index <= chunk)
 				pb(a, b);
 			else
@@ -461,6 +464,29 @@ void	ft_chunk(struct s_stack **a, struct s_stack **b,struct s_stack **fake_a, in
 		}
 		j = 0;
 		chunk += chunk;
+	}
+	pb(a, b);
+//	{
+//		while ((*b)->data != ft_bigger(b))
+//			rb(b);
+//		pa(a, b);
+//	}
+	bigg = ft_bigger(b);
+	while ((*b))
+	{
+		while((*b)->data != bigg)
+		{
+			if (r == 1)
+				rrb(b);
+			else
+				rb(b);
+		}
+		pa(a, b);
+		if ((*b) != NULL)
+		{
+			bigg = ft_bigger(b);
+			r = ft_find_best(b, ft_len(b), bigg);
+		}
 	}
 }
 
@@ -493,10 +519,10 @@ int	main(int argc, char *argv[])
 	else
 	{
 		ft_fake_sort(&fake_a, &fake_a, len);
-		//ft_radix(&stack_a, &stack_b, &fake_a, len);
+	//	ft_radix(&stack_a, &stack_b, &fake_a, len);
 		ft_chunk(&stack_a, &stack_b, &fake_a, len);
 	}
-	ft_print_stacks(&stack_a, &stack_b);
+//	ft_print_stacks(&stack_a, &stack_b);
 
 	return (0);
 }
