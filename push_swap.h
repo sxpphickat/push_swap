@@ -63,5 +63,6 @@ int		ft_len(struct s_stack **x);
 void	ft_radix(struct s_stack **a, struct s_stack **b,struct s_stack **fake_a, int len);
 void	ft_five(struct s_stack **a, struct s_stack **b, int len);
 void	ft_three(struct s_stack **a);
+void	ft_small(struct s_stack **a, struct s_stack **b, int len);
 
 #endif

@@ -393,15 +393,12 @@ void	ft_radix(struct s_stack **a, struct s_stack **b,struct s_stack **fake_a, in
 {
 	int	i;
 	int	j;
-//	int	bl;
 
 	ft_index(a, fake_a);
 	j = 0;
 	i = 0;
 	while (ft_sort_check(a, len))
-//	while ((*a))
 	{
-//		len = ft_len(a);
 		while (j < len)
 		{
 			if ((*a)->index & (1 << i))
@@ -414,19 +411,60 @@ void	ft_radix(struct s_stack **a, struct s_stack **b,struct s_stack **fake_a, in
 		j = 0;
 		while((*b))
 			pa(a, b);
-//		bl = ft_len(b);
-/*		while (j < bl)
-		{
-			if ((*b)->index & (1 << i))
-				pa(a, b);
-			else
-				rb(b);
-			j++;
-		}
-		*/
-//		j = 0;
 	}
 }
+
+void	ft_radix2(struct s_stack **a, struct s_stack **b,struct s_stack **fake_a, int len)
+{
+	int	i;
+	int	j;
+
+	ft_index(a, fake_a);
+	j = 0;
+	i = 0;
+	while (ft_sort_check(a, len))
+	{
+		while (j < len)
+		{
+			if ((*a)->index & (1 << i))
+				ra(a);
+			else
+				pb(a, b);
+			j++;
+		}
+		i++;
+		j = 0;
+		while((*b))
+			pa(a, b);
+	}
+}
+
+void	ft_chunk(struct s_stack **a, struct s_stack **b,struct s_stack **fake_a, int len)
+{
+	unsigned int	chunk;
+	int	j;
+
+	j = 0;
+	ft_index(a, fake_a);
+	chunk = 30;
+	while ((*a))
+	{
+		while (j < len)
+		{
+			if ((*a)->next == NULL)
+				return  ;
+			if ((*a)->index <= chunk)
+				pb(a, b);
+			else
+				ra(a);
+			j++;
+		}
+		j = 0;
+		chunk += chunk;
+	}
+}
+
+
 
 int	main(int argc, char *argv[])
 {
@@ -450,14 +488,15 @@ int	main(int argc, char *argv[])
 	}
 //	ft_print_stacks(&stack_a, &stack_b);
 //	ft_printf("------------------------\n");
-	if (len == 3)
-		ft_three(&stack_a);
-	else if (len <= 5)
-		ft_five(&stack_a, &stack_b, len);
-
-	ft_fake_sort(&fake_a, &fake_a, len);
-//	ft_radix(&stack_a, &stack_b, &fake_a, len);
-//	ft_print_stacks(&stack_a, &stack_b);
+	if (len <= 5)
+		ft_small(&stack_a, &stack_b, len);
+	else
+	{
+		ft_fake_sort(&fake_a, &fake_a, len);
+		//ft_radix(&stack_a, &stack_b, &fake_a, len);
+		ft_chunk(&stack_a, &stack_b, &fake_a, len);
+	}
+	ft_print_stacks(&stack_a, &stack_b);
 
 	return (0);
 }

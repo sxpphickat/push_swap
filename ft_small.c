@@ -47,3 +47,17 @@ void	ft_five(struct s_stack **a, struct s_stack **b, int len)
 	pa(a, b);
 	pa(a, b);
 }
+
+void	ft_small(struct s_stack **a, struct s_stack **b, int len)
+{
+	if (len == 2)
+	{
+		if ((*a)->data > ((*a)->next->data))
+			sa(a);
+	}
+	else if (len == 3)
+		ft_three(a);
+	else if (len <= 5)
+		ft_five(a, b, len);
+	return ;
+}
