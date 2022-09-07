@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/05 15:10:04 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/07 11:25:37 by sphh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -445,14 +445,12 @@ void	ft_chunk(struct s_stack **a, struct s_stack **b,struct s_stack **fake_a, in
 	int				j;
 	unsigned int				bigg;
 	int				r;
-	unsigned int				small;
 
 
 	j = 0;
 	r = 0;
 	ft_index(a, fake_a);
 	chunk = 30;
-	small = 0;
 	while ((*a)->next)
 	{
 		while (j < len)
@@ -500,6 +498,7 @@ int	main(int argc, char *argv[])
 	if (argc < 2)
 		return (0);
 
+	fake_a = NULL;
 	stack_a = NULL;
 	stack_b = NULL;
 	ft_create_x(&stack_a, argv, len);
@@ -509,15 +508,13 @@ int	main(int argc, char *argv[])
 		write(2, "Error\n", 6);
 		return (666);
 	}
-//	ft_print_stacks(&stack_a, &stack_b);
-//	ft_printf("------------------------\n");
 	if (len <= 5)
 		ft_small(&stack_a, &stack_b, len);
 	else
 	{
 		ft_fake_sort(&fake_a, &fake_a, len);
-	//	ft_radix(&stack_a, &stack_b, &fake_a, len);
-		ft_chunk(&stack_a, &stack_b, &fake_a, len);
+		ft_radix(&stack_a, &stack_b, &fake_a, len);
+	//	ft_chunk(&stack_a, &stack_b, &fake_a, len);
 	}
 	ft_print_stacks(&stack_a, &stack_b);
 
