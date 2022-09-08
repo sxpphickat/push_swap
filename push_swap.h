@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 14:25:35 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/05 13:56:07 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/08 10:16:20 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ int		ft_smaller(struct s_stack **stack_a);
 int		ft_bigger(struct s_stack **stack_a);
 int		ft_find_best(struct s_stack **stack_a, int len, int find);
 void	ft_super_sort(struct s_stack **stack_a, struct s_stack **stack_b, int len);
-int	ft_check_left_sort(struct s_stack **stack_a, int pivot);
+int		ft_check_left_sort(struct s_stack **stack_a, int pivot);
 int		ft_last(struct s_stack **stack_a);
-int	get_pivot(struct s_stack **stack_a);
-int    ft_max_value(struct s_stack **list);
-void    ft_concat(struct s_stack **stack_a, struct s_stack **stack_b);
+int		get_pivot(struct s_stack **stack_a);
+int		ft_max_value(struct s_stack **list);
+void	ft_concat(struct s_stack **stack_a, struct s_stack **stack_b);
 void	ft_index(struct s_stack **a, struct s_stack **f);
 int		ft_len(struct s_stack **x);
 void	ft_radix(struct s_stack **a, struct s_stack **b,struct s_stack **fake_a, int len);
@@ -65,9 +65,9 @@ void	ft_five(struct s_stack **a, struct s_stack **b, int len);
 void	ft_three(struct s_stack **a);
 void	ft_small(struct s_stack **a, struct s_stack **b, int len);
 
-unsigned int		ft_bigger_index(struct s_stack **stack_a);
+unsigned int	ft_bigger_index(struct s_stack **stack_a);
 int		ft_find_best_index(struct s_stack **stack_a, int len, unsigned int find);
-unsigned int		ft_smaller_index(struct s_stack **stack_a);
-unsigned int		ft_smallerb_index(struct s_stack **stack_a, unsigned int better);
+unsigned int	ft_smaller_index(struct s_stack **stack_a);
+unsigned int	ft_smallerb_index(struct s_stack **stack_a, unsigned int better);
 
 #endif
