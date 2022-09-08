@@ -6,16 +6,16 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 10:35:39 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/08 09:57:31 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:14:16 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(struct s_stack **stack_a)
+void	sa(t_stack **stack_a)
 {
-	struct s_stack	*node_one;
-	struct s_stack	*node_two;
+	t_stack	*node_one;
+	t_stack	*node_two;
 
 	if ((*stack_a)->next == NULL)
 		return ;
@@ -27,10 +27,10 @@ void	sa(struct s_stack **stack_a)
 	write(1, "sa\n", 3);
 }
 	
-void	sb(struct s_stack **stack_b)
+void	sb(t_stack **stack_b)
 {
-	struct s_stack	*node_one;
-	struct s_stack	*node_two;
+	t_stack	*node_one;
+	t_stack	*node_two;
 
 	if ((*stack_b)->next == NULL)
 		return ;
@@ -42,12 +42,12 @@ void	sb(struct s_stack **stack_b)
 	write(1, "sb\n", 3);
 }
 
-void	ss(struct s_stack **stack_a, struct s_stack **stack_b)
+void	ss(t_stack **stack_a, t_stack **stack_b)
 {
-	struct s_stack	*node_one;
-	struct s_stack	*node_two;
-	struct s_stack	*node_one_b;
-	struct s_stack	*node_two_b;
+	t_stack	*node_one;
+	t_stack	*node_two;
+	t_stack	*node_one_b;
+	t_stack	*node_two_b;
 
 	if ((*stack_a)->next == NULL || (*stack_b)->next == NULL)
 		return ;

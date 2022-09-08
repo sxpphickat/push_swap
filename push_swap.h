@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 14:25:35 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/08 10:16:20 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:24:35 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,57 +17,57 @@
 # include <unistd.h>
 # include "libft/libft.h"
 
-struct	s_stack {
+typedef struct s_stack {
 	int				data;
-	unsigned int	index;
+	size_t			index;
 	struct s_stack	*next;
-};
+}	t_stack;
 
-void	ft_push(struct s_stack **head_ref, int data, unsigned int index);
-void	ft_append(struct s_stack **head_ref, int new_data, unsigned int index);
-void	ft_insert_after(struct s_stack *node, int new_data, unsigned int index);
-void	ft_pop(struct s_stack **stack_x);
+void	ft_push(t_stack **head_ref, int data, size_t index);
+void	ft_append(t_stack **head_ref, int new_data, size_t index);
+void	ft_insert_after(t_stack *node, int new_data, size_t index);
+void	ft_pop(t_stack **stack_x);
 
-void	sa(struct s_stack **stack_a);
-void	sb(struct s_stack **stack_b);
-void	ss(struct s_stack **stack_a, struct s_stack **stack_b);
-void	pa(struct s_stack **stack_a, struct s_stack **stack_b);
-void	pb(struct s_stack **stack_a, struct s_stack **stack_b);
-void	ra(struct s_stack **stack_a);
-void	rb(struct s_stack **stack_b);
-void	rr(struct s_stack **stack_a, struct s_stack **stack_b);
-void	rra(struct s_stack **stack_a);
-void	rrb(struct s_stack **stack_b);
-void	rrr(struct s_stack **stack_a, struct s_stack **stack_b);
+void	sa(t_stack **stack_a);
+void	sb(t_stack **stack_b);
+void	ss(t_stack **stack_a, t_stack **stack_b);
+void	pa(t_stack **stack_a, t_stack **stack_b);
+void	pb(t_stack **stack_a, t_stack **stack_b);
+void	ra(t_stack **stack_a);
+void	rb(t_stack **stack_b);
+void	rr(t_stack **stack_a, t_stack **stack_b);
+void	rra(t_stack **stack_a);
+void	rrb(t_stack **stack_b);
+void	rrr(t_stack **stack_a, t_stack **stack_b);
 
-void	ft_create_x(struct s_stack **stack_a, char *argv[], int len);
-void	ft_print_list(struct s_stack **list_head, char ab);
-void ft_print_stacks(struct s_stack **stack_a, struct s_stack **stack_b);
-void	fsa(struct s_stack **stack_a);
-void	fra(struct s_stack **stack_a);
-int	ft_sort_check(struct s_stack **stack_a, int	len);
-void	ft_sort(struct s_stack **stack_a, struct s_stack **stack_b, int	len);
-void	ft_fake_sort(struct s_stack **stack_a, struct s_stack **stack_b, int	len);
-int	ft_repeat_check(struct s_stack **stack_a);
-int		ft_smaller(struct s_stack **stack_a);
-int		ft_bigger(struct s_stack **stack_a);
-int		ft_find_best(struct s_stack **stack_a, int len, int find);
-void	ft_super_sort(struct s_stack **stack_a, struct s_stack **stack_b, int len);
-int		ft_check_left_sort(struct s_stack **stack_a, int pivot);
-int		ft_last(struct s_stack **stack_a);
-int		get_pivot(struct s_stack **stack_a);
-int		ft_max_value(struct s_stack **list);
-void	ft_concat(struct s_stack **stack_a, struct s_stack **stack_b);
-void	ft_index(struct s_stack **a, struct s_stack **f);
-int		ft_len(struct s_stack **x);
-void	ft_radix(struct s_stack **a, struct s_stack **b,struct s_stack **fake_a, int len);
-void	ft_five(struct s_stack **a, struct s_stack **b, int len);
-void	ft_three(struct s_stack **a);
-void	ft_small(struct s_stack **a, struct s_stack **b, int len);
+void	ft_create_x(t_stack **stack_a, char *argv[], int len);
+void	ft_print_list(t_stack **list_head, char ab);
+void	ft_print_stacks(t_stack **stack_a, t_stack **stack_b);
+void	fsa(t_stack **stack_a);
+void	fra(t_stack **stack_a);
+int		ft_sort_check(t_stack **stack_a, int len);
+void	ft_sort(t_stack **stack_a, t_stack **stack_b, int len);
+void	ft_fake_sort(t_stack **stack_a, t_stack **stack_b, int len);
+int		ft_repeat_check(t_stack **stack_a);
+int		ft_smaller(t_stack **stack_a);
+int		ft_bigger(t_stack **stack_a);
+int		ft_find_best(t_stack **stack_a, int len, int find);
+void	ft_super_sort(t_stack **stack_a, t_stack **stack_b, int len);
+int		ft_check_left_sort(t_stack **stack_a, int pivot);
+int		ft_last(t_stack **stack_a);
+int		get_pivot(t_stack **stack_a);
+int		ft_max_value(t_stack **list);
+void	ft_concat(t_stack **stack_a, t_stack **stack_b);
+void	ft_index(t_stack **a, t_stack **f);
+int		ft_len(t_stack **x);
+void	ft_radix(t_stack **a, t_stack **b, t_stack **fake_a, int len);
+void	ft_five(t_stack **a, t_stack **b, int len);
+void	ft_three(t_stack **a);
+void	ft_small(t_stack **a, t_stack **b, int len);
 
-unsigned int	ft_bigger_index(struct s_stack **stack_a);
-int		ft_find_best_index(struct s_stack **stack_a, int len, unsigned int find);
-unsigned int	ft_smaller_index(struct s_stack **stack_a);
-unsigned int	ft_smallerb_index(struct s_stack **stack_a, unsigned int better);
+size_t	ft_bigger_index(t_stack **stack_a);
+int		ft_find_best_index(t_stack **stack_a, int len, size_t find);
+size_t	ft_smaller_index(t_stack **stack_a);
+size_t	ft_smallerb_index(t_stack **stack_a, size_t better);
 
 #endif

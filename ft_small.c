@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_three.c                                         :+:      :+:    :+:   */
+/*   ft_small.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 13:54:42 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/01 13:56:17 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:13:12 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_three(struct s_stack **a)
+void	ft_three(t_stack **a)
 {
 	if ((*a)->data == ft_bigger(a))
 		ra(a);
@@ -22,7 +22,7 @@ void	ft_three(struct s_stack **a)
 		sa(a);
 }
 
-void	ft_five(struct s_stack **a, struct s_stack **b, int len)
+void	ft_five(t_stack **a, t_stack **b, int len)
 {
 	while ((*a)->data != ft_smaller(a))
 	{
@@ -48,7 +48,7 @@ void	ft_five(struct s_stack **a, struct s_stack **b, int len)
 	pa(a, b);
 }
 
-void	ft_small(struct s_stack **a, struct s_stack **b, int len)
+void	ft_small(t_stack **a, t_stack **b, int len)
 {
 	if (len == 2)
 	{

@@ -6,13 +6,13 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 10:37:19 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/31 14:07:04 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:13:23 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	pa(struct s_stack **stack_a, struct s_stack **stack_b)
+void	pa(t_stack **stack_a, t_stack **stack_b)
 {
 	if ((*stack_b) == NULL)
 		return ;
@@ -21,7 +21,7 @@ void	pa(struct s_stack **stack_a, struct s_stack **stack_b)
 	write(1, "pa\n", 3);
 }
 
-void	pb(struct s_stack **stack_a, struct s_stack **stack_b)
+void	pb(t_stack **stack_a, t_stack **stack_b)
 {
 	if ((*stack_a) == NULL)
 		return ;

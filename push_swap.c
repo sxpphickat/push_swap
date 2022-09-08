@@ -6,21 +6,21 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/07 11:25:37 by sphh             ###   ########.fr       */
+/*   Updated: 2022/09/08 17:20:15 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_create_x(struct s_stack **stack_a, char *argv[], int len)
+void	ft_create_x(t_stack **stack_a, char *argv[], int len)
 {
 	while (len >= 1)
 		ft_push(stack_a, ft_atoi(argv[len--]), 0);
 }
 
-void	ft_print_list(struct s_stack **list_head, char ab)
+void	ft_print_list(t_stack **list_head, char ab)
 {
-	struct s_stack	*print_stack;
+	t_stack	*print_stack;
 
 	if (ab == 'a')
 		ft_printf("stack a: ");
@@ -36,10 +36,10 @@ void	ft_print_list(struct s_stack **list_head, char ab)
 		ft_printf("NULL\n");
 }
 
-void ft_print_stacks(struct s_stack **stack_a, struct s_stack **stack_b)
+void ft_print_stacks(t_stack **stack_a, t_stack **stack_b)
 {
-	struct s_stack	*temp_b;
-	struct s_stack	*temp_a;
+	t_stack	*temp_b;
+	t_stack	*temp_a;
 
 	temp_a = (*stack_a);
 	temp_b = (*stack_b);
@@ -64,10 +64,10 @@ void ft_print_stacks(struct s_stack **stack_a, struct s_stack **stack_b)
 	write(1, "a  b\n", 5);
 }
 
-void	fsa(struct s_stack **stack_a)
+void	fsa(t_stack **stack_a)
 {
-	struct s_stack	*node_one;
-	struct s_stack	*node_two;
+	t_stack	*node_one;
+	t_stack	*node_two;
 
 	if ((*stack_a)->next == NULL)
 		return ;
@@ -78,15 +78,15 @@ void	fsa(struct s_stack **stack_a)
 	node_two->next = node_one;
 }
 
-void	fra(struct s_stack **stack_a)
+void	fra(t_stack **stack_a)
 {
 	ft_append(stack_a, (*stack_a)->data, (*stack_a)->index);
 	ft_pop(stack_a);
 }
 
-int	ft_sort_check(struct s_stack **stack_a, int	len)
+int	ft_sort_check(t_stack **stack_a, int	len)
 {
-	struct s_stack	*temp;
+	t_stack	*temp;
 	int				i;
 
 	i = 0;
@@ -106,7 +106,7 @@ int	ft_sort_check(struct s_stack **stack_a, int	len)
 	return (1);
 }
 
-void	ft_sort(struct s_stack **stack_a, struct s_stack **stack_b, int	len)
+void	ft_sort(t_stack **stack_a, t_stack **stack_b, int	len)
 {
 	int		i;
 
@@ -126,7 +126,7 @@ void	ft_sort(struct s_stack **stack_a, struct s_stack **stack_b, int	len)
 	}
 }
 
-void	ft_fake_sort(struct s_stack **stack_a, struct s_stack **stack_b, int	len)
+void	ft_fake_sort(t_stack **stack_a, t_stack **stack_b, int	len)
 {
 	int		i;
 
@@ -146,10 +146,10 @@ void	ft_fake_sort(struct s_stack **stack_a, struct s_stack **stack_b, int	len)
 	}
 }
 
-int	ft_repeat_check(struct s_stack **stack_a)
+int	ft_repeat_check(t_stack **stack_a)
 {
-	struct s_stack	*temp_stack;
-	struct s_stack	*next;
+	t_stack	*temp_stack;
+	t_stack	*next;
 	int				temp;
 
 	temp_stack = (*stack_a);
@@ -181,9 +181,9 @@ int	ft_repeat_check(struct s_stack **stack_a)
 	return (0);
 }
 
-int		ft_smaller(struct s_stack **stack_a)
+int		ft_smaller(t_stack **stack_a)
 {
-	struct s_stack	*temp;
+	t_stack	*temp;
 	int				small;
 
 	temp = (*stack_a);
@@ -197,9 +197,9 @@ int		ft_smaller(struct s_stack **stack_a)
 	return(small);
 }
 
-int		ft_bigger(struct s_stack **stack_a)
+int		ft_bigger(t_stack **stack_a)
 {
-	struct s_stack	*temp;
+	t_stack	*temp;
 	int				big;
 
 	temp = (*stack_a);
@@ -213,9 +213,9 @@ int		ft_bigger(struct s_stack **stack_a)
 	return(big);
 }
 
-int		ft_find_best(struct s_stack **stack_a, int len, int find)
+int		ft_find_best(t_stack **stack_a, int len, int find)
 {
-	struct s_stack	*temp;
+	t_stack	*temp;
 	int				movs;
 
 	movs = 0;
@@ -231,7 +231,7 @@ int		ft_find_best(struct s_stack **stack_a, int len, int find)
 		return (2);
 }
 
-void	ft_super_sort(struct s_stack **stack_a, struct s_stack **stack_b, int len)
+void	ft_super_sort(t_stack **stack_a, t_stack **stack_b, int len)
 {
 	int	r;
 	int	small;
@@ -259,9 +259,9 @@ void	ft_super_sort(struct s_stack **stack_a, struct s_stack **stack_b, int len)
 		pa(stack_a, stack_b);
 }
 
-int		ft_last(struct s_stack **stack_a)
+int		ft_last(t_stack **stack_a)
 {
-	struct s_stack *temp;
+	t_stack *temp;
 
 	temp = (*stack_a);
 	while (temp->next)
@@ -270,9 +270,9 @@ int		ft_last(struct s_stack **stack_a)
 }
 
 
-int	ft_check_left_sort(struct s_stack **stack_a, int pivot)
+int	ft_check_left_sort(t_stack **stack_a, int pivot)
 {
-	struct s_stack	*temp;
+	t_stack	*temp;
 
 	temp = (*stack_a);
 	if (temp->data == pivot)
@@ -287,9 +287,9 @@ int	ft_check_left_sort(struct s_stack **stack_a, int pivot)
 	return (0);
 }
 
-int	get_pivot(struct s_stack **stack_a)
+int	get_pivot(t_stack **stack_a)
 {
-	struct s_stack	*temp;
+	t_stack	*temp;
 
 	temp = (*stack_a);
 	while (temp->next != NULL)
@@ -302,10 +302,10 @@ int	get_pivot(struct s_stack **stack_a)
 	return (temp->data);
 }
 
-int    ft_max_value(struct s_stack **list)
+int    ft_max_value(t_stack **list)
 {
-    struct s_stack	**aux;
-    unsigned int	max;
+    t_stack	**aux;
+    size_t	max;
 
     aux = list;
     max = 0;
@@ -318,10 +318,10 @@ int    ft_max_value(struct s_stack **list)
     return (max);
 }
 
-void    ft_concat(struct s_stack **stack_a, struct s_stack **stack_b)
+void    ft_concat(t_stack **stack_a, t_stack **stack_b)
 {
-    unsigned int	small;
-    unsigned int	a_max;
+    size_t	small;
+    size_t	a_max;
 
     a_max = ft_max_value(stack_a);
     if ((*stack_a)->index > (*stack_b)->index)
@@ -353,11 +353,11 @@ void    ft_concat(struct s_stack **stack_a, struct s_stack **stack_b)
             ra(stack_a);
 }
 
-void	ft_index(struct s_stack **a, struct s_stack **f)
+void	ft_index(t_stack **a, t_stack **f)
 {
 	int				i;
-	struct s_stack	*temp;
-	struct s_stack	*tempf;
+	t_stack	*temp;
+	t_stack	*tempf;
 
 	temp = (*a);
 	tempf = (*f);
@@ -374,10 +374,10 @@ void	ft_index(struct s_stack **a, struct s_stack **f)
 	}
 }
 
-int		ft_len(struct s_stack **x)
+int		ft_len(t_stack **x)
 {
 	int				i;
-	struct s_stack	*temp;
+	t_stack	*temp;
 
 	temp = (*x);
 	i = 0;
@@ -389,7 +389,7 @@ int		ft_len(struct s_stack **x)
 	return (i);
 }
 
-void	ft_radix(struct s_stack **a, struct s_stack **b,struct s_stack **fake_a, int len)
+void	ft_radix(t_stack **a, t_stack **b,t_stack **fake_a, int len)
 {
 	int	i;
 	int	j;
@@ -414,7 +414,7 @@ void	ft_radix(struct s_stack **a, struct s_stack **b,struct s_stack **fake_a, in
 	}
 }
 
-void	ft_radix2(struct s_stack **a, struct s_stack **b,struct s_stack **fake_a, int len)
+void	ft_radix2(t_stack **a, t_stack **b,t_stack **fake_a, int len)
 {
 	int	i;
 	int	j;
@@ -439,11 +439,11 @@ void	ft_radix2(struct s_stack **a, struct s_stack **b,struct s_stack **fake_a, i
 	}
 }
 
-void	ft_chunk(struct s_stack **a, struct s_stack **b,struct s_stack **fake_a, int len)
+void	ft_chunk(t_stack **a, t_stack **b,t_stack **fake_a, int len)
 {
-	unsigned int	chunk;
+	size_t	chunk;
 	int				j;
-	unsigned int				bigg;
+	size_t				bigg;
 	int				r;
 
 
@@ -489,9 +489,9 @@ void	ft_chunk(struct s_stack **a, struct s_stack **b,struct s_stack **fake_a, in
 
 int	main(int argc, char *argv[])
 {
-	struct s_stack	*stack_a;
-	struct s_stack	*stack_b;
-	struct s_stack	*fake_a;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+	t_stack	*fake_a;
 	int				len;
 
 	len = argc - 1;

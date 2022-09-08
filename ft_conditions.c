@@ -6,16 +6,16 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 11:49:21 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/05 14:36:24 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:21:10 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-unsigned int		ft_bigger_index(struct s_stack **stack_a)
+size_t		ft_bigger_index(t_stack **stack_a)
 {
-	struct s_stack	*temp;
-	unsigned int	big;
+	t_stack	*temp;
+	size_t	big;
 
 	temp = (*stack_a);
 	big = temp->index;
@@ -28,9 +28,9 @@ unsigned int		ft_bigger_index(struct s_stack **stack_a)
 	return(big);
 }
 
-int		ft_find_best_index(struct s_stack **stack_a, int len, unsigned int find)
+int		ft_find_best_index(t_stack **stack_a, int len, size_t find)
 {
-	struct s_stack	*temp;
+	t_stack	*temp;
 	int				movs;
 
 	movs = 0;
@@ -46,10 +46,10 @@ int		ft_find_best_index(struct s_stack **stack_a, int len, unsigned int find)
 		return (2);
 }
 
-unsigned int		ft_smaller_index(struct s_stack **stack_a)
+size_t		ft_smaller_index(t_stack **stack_a)
 {
-	struct s_stack	*temp;
-	unsigned int	small;
+	t_stack	*temp;
+	size_t	small;
 
 	temp = (*stack_a);
 	small = temp->index;
@@ -62,10 +62,10 @@ unsigned int		ft_smaller_index(struct s_stack **stack_a)
 	return(small);
 }
 
-unsigned int		ft_smallerb_index(struct s_stack **stack_a, unsigned int better)
+size_t		ft_smallerb_index(t_stack **stack_a, size_t better)
 {
-	struct s_stack	*temp;
-	unsigned int	small;
+	t_stack	*temp;
+	size_t	small;
 
 	temp = (*stack_a);
 	small = better;

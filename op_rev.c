@@ -6,16 +6,16 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 10:39:32 by vipereir          #+#    #+#             */
-/*   Updated: 2022/08/30 09:41:24 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:13:52 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rra(struct s_stack **stack_a)
+void	rra(t_stack **stack_a)
 {
-	struct s_stack	*temp;
-	struct s_stack	*temp_free;
+	t_stack	*temp;
+	t_stack	*temp_free;
 
 	if ((*stack_a)->next == NULL)
 		return ;
@@ -29,10 +29,10 @@ void	rra(struct s_stack **stack_a)
 	write(1, "rra\n", 4);
 }
 
-void	rrb(struct s_stack **stack_b)
+void	rrb(t_stack **stack_b)
 {
-	struct s_stack	*temp;
-	struct s_stack	*temp_free;
+	t_stack	*temp;
+	t_stack	*temp_free;
 
 	if ((*stack_b)->next == NULL)
 		return ;
@@ -46,12 +46,12 @@ void	rrb(struct s_stack **stack_b)
 	write(1, "rrb\n", 4);
 }
 
-void	rrr(struct s_stack **stack_a, struct s_stack **stack_b)
+void	rrr(t_stack **stack_a, t_stack **stack_b)
 {
-	struct s_stack	*temp;
-	struct s_stack	*temp_free;
-	struct s_stack	*temp_b;
-	struct s_stack	*temp_free_b;
+	t_stack	*temp;
+	t_stack	*temp_free;
+	t_stack	*temp_b;
+	t_stack	*temp_free_b;
 
 	if ((*stack_a)->next == NULL || (*stack_b)->next == NULL)
 		return ;
