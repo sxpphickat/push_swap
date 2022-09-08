@@ -1,30 +1,37 @@
-NAME = push_swap
+NAME		= push_swap
 
-CFLAGS = -Wall -Wextra -Werror
+SRC			= push_swap.c\
+			  ft_conditions.c\
+			  ft_movs.c\
+			  ft_small.c\
+			  op_push.c\
+			  op_rev.c\
+			  op_rotate.c\
+			  op_swap.c
 
-CC = cc
+LIB_PATH	= libft/libft.a
 
-SOURCE = *.c
+CC			= cc
 
-RM = rm -f
+RM			= rm -f
 
-all:	$(NAME)
+CFLAGS		= -Wall -Wextra -Werror
 
-$(NAME): libgen
-		$(CC) $(CFLAGS) $(SOURCE) libft/libft.a -o $(NAME)
+$(NAME):	$(SRC) $(LIB_PATH)
+				$(CC) $(CFLAGS) $(SRC) $(LIB_PATH) -o $(NAME)
 
-all: $(name)
+$(LIB_PATH):
+		make -C ./libft
 
-libgen:
-		cd ./libft && make
+all:		$(NAME)
 
 clean:
-		cd ./libft && make clean
+		make -C ./libft clean
 
 fclean:
 		$(RM) $(NAME)
-		cd libft && make fclean
+		make -C ./libft fclean
 
-re:		fclean all
+re:			fclean all
 
 .PHONY:		all clean fclean re
