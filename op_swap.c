@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 10:35:39 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/08 17:14:16 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:26:16 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	sa(t_stack **stack_a)
 	node_two->next = node_one;
 	write(1, "sa\n", 3);
 }
-	
+
 void	sb(t_stack **stack_b)
 {
 	t_stack	*node_one;

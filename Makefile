@@ -7,7 +7,12 @@ SRC			= push_swap.c\
 			  op_push.c\
 			  op_rev.c\
 			  op_rotate.c\
-			  op_swap.c
+			  op_swap.c\
+			  utils.c\
+			  utils2.c\
+			  utils3.c\
+			  utils4.c\
+			  utils5.c
 
 LIB_PATH	= libft/libft.a
 

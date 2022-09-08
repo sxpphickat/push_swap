@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 14:25:35 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/08 17:24:35 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:40:42 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,29 @@ size_t	ft_bigger_index(t_stack **stack_a);
 int		ft_find_best_index(t_stack **stack_a, int len, size_t find);
 size_t	ft_smaller_index(t_stack **stack_a);
 size_t	ft_smallerb_index(t_stack **stack_a, size_t better);
+
+void	ft_create_x(t_stack **stack_a, char *argv[], int len);
+void	ft_print_list(t_stack **list_head, char ab);
+void	ft_print_stacks(t_stack **stack_a, t_stack **stack_b);
+void	fsa(t_stack **stack_a);
+void	fra(t_stack **stack_a);
+int		ft_sort_check(t_stack **stack_a, int len);
+void	ft_sort(t_stack **stack_a, t_stack **stack_b, int len);
+void	ft_fake_sort(t_stack **stack_a, t_stack **stack_b, int len);
+int		ft_repeat_check(t_stack **stack_a);
+int		ft_smaller(t_stack **stack_a);
+int		ft_bigger(t_stack **stack_a);
+int		ft_find_best(t_stack **stack_a, int len, int find);
+void	ft_super_sort(t_stack **stack_a, t_stack **stack_b, int len);
+int		ft_last(t_stack **stack_a);
+int		ft_check_left_sort(t_stack **stack_a, int pivot);
+int		get_pivot(t_stack **stack_a);
+int		ft_max_value(t_stack **list);
+void	ft_concat(t_stack **stack_a, t_stack **stack_b);
+void	ft_index(t_stack **a, t_stack **f);
+int		ft_len(t_stack **x);
+void	ft_radix(t_stack **a, t_stack **b, t_stack **fake_a, int len);
+void	ft_radix2(t_stack **a, t_stack **b, t_stack **fake_a, int len);
+void	ft_chunk(t_stack **a, t_stack **b, t_stack **fake_a, int len);
 
 #endif
