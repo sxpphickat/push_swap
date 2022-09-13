@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 14:25:35 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/08 17:40:42 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/13 08:49:33 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	rra(t_stack **stack_a);
 void	rrb(t_stack **stack_b);
 void	rrr(t_stack **stack_a, t_stack **stack_b);
 
-void	ft_create_x(t_stack **stack_a, char *argv[], int len);
+int		ft_create_x(t_stack **stack_a, char *argv[], int len);
 void	ft_print_list(t_stack **list_head, char ab);
 void	ft_print_stacks(t_stack **stack_a, t_stack **stack_b);
 void	fsa(t_stack **stack_a);
@@ -70,7 +70,6 @@ int		ft_find_best_index(t_stack **stack_a, int len, size_t find);
 size_t	ft_smaller_index(t_stack **stack_a);
 size_t	ft_smallerb_index(t_stack **stack_a, size_t better);
 
-void	ft_create_x(t_stack **stack_a, char *argv[], int len);
 void	ft_print_list(t_stack **list_head, char ab);
 void	ft_print_stacks(t_stack **stack_a, t_stack **stack_b);
 void	fsa(t_stack **stack_a);

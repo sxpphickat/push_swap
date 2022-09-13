@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/08 17:40:01 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/13 09:14:24 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	main(int argc, char *argv[])
 	t_stack	*stack_b;
 	t_stack	*fake_a;
 	int		len;
+	int		ret;
 
 	len = argc - 1;
 	if (argc < 2)
@@ -25,9 +26,9 @@ int	main(int argc, char *argv[])
 	fake_a = NULL;
 	stack_a = NULL;
 	stack_b = NULL;
-	ft_create_x(&stack_a, argv, len);
+	ret = ft_create_x(&stack_a, argv, len);
 	ft_create_x(&fake_a, argv, len);
-	if (ft_repeat_check(&stack_a))
+	if (ret == 1 || ft_repeat_check(&stack_a))
 	{
 		write(2, "Error\n", 6);
 		return (666);
