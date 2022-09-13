@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:29:51 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/13 09:17:36 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/13 12:03:41 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	ft_ck(char	*s)
 int	ft_create_x(t_stack **stack_a, char *argv[], int len)
 {
 	int	ret;
+
 	ret = 0;
 	while (len >= 1)
 	{
@@ -36,24 +37,6 @@ int	ft_create_x(t_stack **stack_a, char *argv[], int len)
 		ft_push(stack_a, ft_atoi(argv[len--]), 0);
 	}
 	return (ret);
-}
-
-void	ft_print_list(t_stack **list_head, char ab)
-{
-	t_stack	*print_stack;
-
-	if (ab == 'a')
-		ft_printf("stack a: ");
-	else if (ab == 'b')
-		ft_printf("stack b: ");
-	print_stack = (*list_head);
-	while (print_stack != NULL)
-	{
-		ft_printf("%i -> ", print_stack->data);
-		print_stack = print_stack->next;
-	}
-	if (print_stack == NULL)
-		ft_printf("NULL\n");
 }
 
 void	ft_print_stacks(t_stack **stack_a, t_stack **stack_b)

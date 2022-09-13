@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:35:45 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/08 17:43:00 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/13 11:51:32 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,33 +78,19 @@ int	ft_repeat_check(t_stack **stack_a)
 {
 	t_stack	*temp_stack;
 	t_stack	*next;
-	int		temp;
 
 	temp_stack = (*stack_a);
-	temp = temp_stack->data;
-	if (temp_stack->next != NULL)
-		temp_stack = temp_stack->next;
-	else
-		return (1);
-	if (temp_stack->next != NULL)
-		next = temp_stack->next;
-	else
-		next = NULL;
-	while (temp_stack != NULL)
+	next = temp_stack->next;
+	while (temp_stack->next)
 	{
-		if (temp == temp_stack->data)
-			return (1);
-		else
-			temp_stack = temp_stack->next;
-		if (temp_stack == NULL)
+		while (next)
 		{
-			if (next != NULL)
-			{
-				temp_stack = next->next;
-				temp = next->data;
-				next = temp_stack;
-			}
+			if (next->data == temp_stack->data)
+				return (1);
+			next = next->next;
 		}
+		temp_stack = temp_stack->next;
+		next = temp_stack->next;
 	}
 	return (0);
 }

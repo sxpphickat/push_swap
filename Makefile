@@ -20,7 +20,7 @@ CC			= cc
 
 RM			= rm -f
 
-CFLAGS		= -g -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror
 
 $(NAME):	$(SRC) $(LIB_PATH)
 				$(CC) $(CFLAGS) $(SRC) $(LIB_PATH) -o $(NAME)

@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:37:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/08 17:50:05 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/13 13:12:29 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,25 @@ void	ft_radix2(t_stack **a, t_stack **b, t_stack **fake_a, int len)
 	}
 }
 
-void	ft_chunk(t_stack **a, t_stack **b, t_stack **fake_a, int len)
+void	ft_print_list(t_stack **list_head, char ab)
+{
+	t_stack	*print_stack;
+
+	if (ab == 'a')
+		ft_printf("stack a: ");
+	else if (ab == 'b')
+		ft_printf("stack b: ");
+	print_stack = (*list_head);
+	while (print_stack != NULL)
+	{
+		ft_printf("%i -> ", print_stack->data);
+		print_stack = print_stack->next;
+	}
+	if (print_stack == NULL)
+		ft_printf("NULL\n");
+}
+
+/*void	ft_chunk(t_stack **a, t_stack **b, t_stack **fake_a, int len)
 {
 	size_t	chunk;
 	int		j;
@@ -106,4 +124,4 @@ void	ft_chunk(t_stack **a, t_stack **b, t_stack **fake_a, int len)
 			r = ft_find_best_index(b, ft_len(b), bigg);
 		}
 	}
-}
+}*/
