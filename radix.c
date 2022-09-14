@@ -6,11 +6,17 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:37:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/14 08:07:44 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/14 11:05:18 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ft_pt2(t_stack **a, t_stack **b)
+{
+	while ((*b))
+		pa(a, b);
+}
 
 void	ft_radix(t_stack **a, t_stack **b, t_stack **fake_a, int len)
 {
@@ -20,8 +26,9 @@ void	ft_radix(t_stack **a, t_stack **b, t_stack **fake_a, int len)
 	ft_index(a, fake_a);
 	j = 0;
 	i = 0;
-	while (ft_sort_check(a, len))
+	while (i < 9)
 	{
+		len = ft_len(a);
 		while (j < len)
 		{
 			if ((*a)->index & (1 << i))
@@ -29,12 +36,24 @@ void	ft_radix(t_stack **a, t_stack **b, t_stack **fake_a, int len)
 			else
 				pb(a, b);
 			j++;
+			if (ft_sort_check(a, len) == 0)
+				return ;
 		}
 		i++;
 		j = 0;
-		while ((*b))
-			pa(a, b);
+		len = ft_len(b);
+		while (j < len)
+		{
+			if ((*b)->index & (1 << i))
+				pa(a, b);
+			else
+				rb(b);
+			j++;
+		}
+		j = 0;
 	}
+	while ((*b))
+		pa(a, b);
 }
 
 void	ft_radix2(t_stack **a, t_stack **b, t_stack **fake_a, int len)

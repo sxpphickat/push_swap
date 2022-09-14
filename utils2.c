@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:35:45 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/13 11:51:32 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/14 10:55:36 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	ft_sort_check(t_stack **stack_a, int len)
 	int		i;
 
 	i = 0;
+	len = ft_len(stack_a);
 	temp = (*stack_a);
 	while (temp->next != NULL)
 	{

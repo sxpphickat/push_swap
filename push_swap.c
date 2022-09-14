@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/14 08:04:53 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/14 10:59:41 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int	main(int argc, char *argv[])
 	{
 		ft_fake_sort(&fake_a, &fake_a, len);
 		ft_radix(&stack_a, &stack_b, &fake_a, len);
+		ft_pt2(&stack_a, &stack_b);
 	}
-	ft_print_stacks(&stack_a, &stack_b);
+	//ft_print_stacks(&stack_a, &stack_b);
 	return (0);
 }
