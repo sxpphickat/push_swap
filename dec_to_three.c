@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   radix_base_3.c                                     :+:      :+:    :+:   */
+/*   dec_to_three.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 11:53:53 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/14 16:44:30 by vipereir         ###   ########.fr       */
+/*   Created: 2022/09/14 14:58:12 by vipereir          #+#    #+#             */
+/*   Updated: 2022/09/14 14:58:24 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 size_t	size_three(size_t dec)
 {
@@ -53,45 +52,4 @@ size_t	ft_dec_to_3(size_t dec)
 	three /= 10;
 	three--;
 	return (three);
-}
-
-void	ft_radix_base_3(t_stack **a, t_stack **b, t_stack **fake_a, int len)
-{
-	int	i;
-	int	j;
-	size_t	div;
-
-	ft_index(a, fake_a);
-	div = 1;
-	j = 0;
-	i = 5;
-	while (i > 0)
-	{
-		len = ft_len(a);
-		while (j < len)
-		{
-			if (ft_dec_to_3((*a)->index) / div % 10 == 2)
-				ra(a);
-			else if (ft_dec_to_3((*a)->index) / div % 10 == 1)
-				pb(a, b);
-			else if (ft_dec_to_3((*a)->index) / div % 10 == 0)
-				pb(a, b);
-			j++;
-		}
-		j = 0;
-		i--;
-		len = ft_len(b);
-		while (j < len)
-		{
-			if (ft_dec_to_3((*b)->index) / div % 10 == 1)
-				pa(a, b);
-			else
-				rb(b);
-			j++;
-		}
-		j = 0;
-		while ((*b))
-			pa(a, b);
-		div *= 10;
-	}
 }
