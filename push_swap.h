@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 14:25:35 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/14 10:59:28 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/14 12:05:46 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,8 @@ void	ft_radix(t_stack **a, t_stack **b, t_stack **fake_a, int len);
 void	ft_pt2(t_stack **a, t_stack **b);
 void	ft_radix2(t_stack **a, t_stack **b, t_stack **fake_a, int len);
 void	ft_chunk(t_stack **a, t_stack **b, t_stack **fake_a, int len);
+void	ft_radix_base_3(t_stack **a, t_stack **b, t_stack **fake_a, int len);
+int		ft_rev_sort_check(t_stack **stack_a, int len);
+void	ft_pt2(t_stack **a, t_stack **b);
 
 #endif
