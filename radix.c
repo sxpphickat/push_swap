@@ -6,11 +6,34 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:37:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/14 11:05:18 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/14 11:38:02 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	ft_rev_sort_check(t_stack **stack_a, int len)
+{
+	t_stack	*temp;
+	int		i;
+
+	i = 0;
+	len = ft_len(stack_a);
+	temp = (*stack_a);
+	while (temp->next != NULL)
+	{
+		if (temp->data > temp->next->data)
+		{
+			temp = temp->next;
+			i++;
+		}
+		else
+			return (1);
+	}
+	if (i == len - 1)
+		return (0);
+	return (1);
+}
 
 void	ft_pt2(t_stack **a, t_stack **b)
 {
@@ -22,11 +45,13 @@ void	ft_radix(t_stack **a, t_stack **b, t_stack **fake_a, int len)
 {
 	int	i;
 	int	j;
+	int	big;
 
 	ft_index(a, fake_a);
 	j = 0;
 	i = 0;
-	while (i < 9)
+	big = ft_bigger(a);
+	while (i < 999)
 	{
 		len = ft_len(a);
 		while (j < len)
@@ -36,7 +61,7 @@ void	ft_radix(t_stack **a, t_stack **b, t_stack **fake_a, int len)
 			else
 				pb(a, b);
 			j++;
-			if (ft_sort_check(a, len) == 0)
+			if (!ft_sort_check(a, len) && !ft_rev_sort_check(b, len))
 				return ;
 		}
 		i++;
