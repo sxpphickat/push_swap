@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 11:53:53 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/14 14:42:48 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:56:53 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ size_t	size_three(size_t dec)
 	return (size);
 }
 
-size_t	ft_pow(size_t	nb, int	pow)
+size_t	ft_pow(size_t	nb, size_t	pow)
 {
 	size_t pow_nb;
 
@@ -39,24 +39,27 @@ size_t	ft_pow(size_t	nb, int	pow)
 size_t	ft_dec_to_3(size_t dec)
 {
 	size_t	three;
+	size_t	pow;
 
 	three = 0;
+	three = ft_pow(10, size_three(dec));
+	pow = three;
 	while (dec > 0)
 	{
-		three += dec % 3;
-		three *= 10;
+		three += dec % 3 * pow;
+		three /= 10;
 		dec /= 3;
 	}
 	three /= 10;
-	//three /= 10; // divide por 10 e ja estou pegando a ultima casa;
+	three--;
 	return (three);
 }
 
 int	main(void)
 {
-	printf("%zu\n", ft_dec_to_3(99));
-	printf("%zu\n", size_three(99));
-	printf("%zu\n", ft_pow(10, 10));
+	printf("%zu\n", ft_dec_to_3(100));
+//	printf("%zu\n", size_three(99));
+//	printf("%zu\n", ft_pow(10, 10));
 	return (0);
 }
 
