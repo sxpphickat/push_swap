@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 14:25:35 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/15 10:21:55 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/15 11:31:02 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_push(t_stack **head_ref, int data, size_t index);
 void	ft_append(t_stack **head_ref, int new_data, size_t index);
 void	ft_insert_after(t_stack *node, int new_data, size_t index);
 void	ft_pop(t_stack **stack_x);
+void	ft_free(t_stack **a, t_stack **b, t_stack **fake_a);
 
 void	sa(t_stack **stack_a);
 void	sb(t_stack **stack_b);

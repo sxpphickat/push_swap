@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 10:20:01 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/08 17:20:43 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/15 11:28:54 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ void	ft_pop(t_stack **stack_x)
 
 	if ((*stack_x) == NULL)
 		return ;
-	temp = (*stack_x);
+	temp = *stack_x;
 	(*stack_x) = temp->next;
-	temp = NULL;
 	free(temp);
+	temp = NULL;
 }
