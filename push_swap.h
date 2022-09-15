@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 14:25:35 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/14 14:59:12 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/15 10:21:55 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int		ft_max_value(t_stack **list);
 void	ft_concat(t_stack **stack_a, t_stack **stack_b);
 void	ft_index(t_stack **a, t_stack **f);
 int		ft_len(t_stack **x);
-void	ft_radix(t_stack **a, t_stack **b, t_stack **fake_a, int len);
+void	ft_radix(t_stack **a, t_stack **b, t_stack **fake_a);
 void	ft_five(t_stack **a, t_stack **b, int len);
 void	ft_three(t_stack **a);
 void	ft_small(t_stack **a, t_stack **b, int len);
@@ -89,7 +89,6 @@ int		ft_max_value(t_stack **list);
 void	ft_concat(t_stack **stack_a, t_stack **stack_b);
 void	ft_index(t_stack **a, t_stack **f);
 int		ft_len(t_stack **x);
-void	ft_radix(t_stack **a, t_stack **b, t_stack **fake_a, int len);
 void	ft_pt2(t_stack **a, t_stack **b);
 void	ft_radix2(t_stack **a, t_stack **b, t_stack **fake_a, int len);
 void	ft_chunk(t_stack **a, t_stack **b, t_stack **fake_a, int len);

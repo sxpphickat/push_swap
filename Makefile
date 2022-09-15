@@ -13,7 +13,7 @@ SRC			= push_swap.c\
 			  utils3.c\
 			  utils4.c\
 			  radix.c\
-			  radix_base_3.c
+			  radix2.c
 
 LIB_PATH	= libft/libft.a
 

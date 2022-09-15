@@ -6,13 +6,13 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/15 09:51:42 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/15 10:38:13 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_decide(t_stack	*stack_a, t_stack	*stack_b, t_stack	*fake_a, int len)
+void	ft_decide(t_stack *stack_a, t_stack *stack_b, t_stack *fake_a, int len)
 {
 	if (len <= 5)
 		ft_small(&stack_a, &stack_b, len);
@@ -24,10 +24,9 @@ void	ft_decide(t_stack	*stack_a, t_stack	*stack_b, t_stack	*fake_a, int len)
 	else
 	{
 		ft_fake_sort(&fake_a, &fake_a, len);
-		ft_radix(&stack_a, &stack_b, &fake_a, len);
+		ft_radix(&stack_a, &stack_b, &fake_a);
 		ft_pt2(&stack_a, &stack_b);
 	}
-	ft_print_stacks(&stack_a, &stack_b);
 }
 
 int	main(int argc, char *argv[])
@@ -49,8 +48,6 @@ int	main(int argc, char *argv[])
 	if (ret == 1 || ft_repeat_check(&stack_a))
 		return (write(2, "Error\n", 6));
 	ft_decide(stack_a, stack_b, fake_a, len);
-//	while (stack_a)
-//		ft_pop(&stack_a);
 	return (0);
 }
 

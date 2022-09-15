@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 14:58:12 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/14 14:58:24 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/15 10:00:36 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ size_t	size_three(size_t dec)
 
 size_t	ft_pow(size_t	nb, size_t	pow)
 {
-	size_t pow_nb;
+	size_t	pow_nb;
 
 	pow_nb = nb;
 	while (pow--)

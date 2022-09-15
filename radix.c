@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:37:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/15 09:31:51 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/15 10:41:00 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,87 +41,56 @@ void	ft_pt2(t_stack **a, t_stack **b)
 		pa(a, b);
 }
 
-void	ft_radix(t_stack **a, t_stack **b, t_stack **fake_a, int len)
+int	ft_iterate_a(t_stack **a, t_stack **b, int i)
 {
-	int	i;
+	int	len;
 	int	j;
-	int	big;
 
-	ft_index(a, fake_a);
 	j = 0;
-	i = 0;
-	big = ft_bigger(a);
-	while (i < 999)
+	len = ft_len(a);
+	while (j < len)
 	{
-		len = ft_len(a);
-		while (j < len)
-		{
-			if ((*a)->index & (1 << i))
-				ra(a);
-			else
-				pb(a, b);
-			j++;
-			if (!ft_sort_check(a, len) && !ft_rev_sort_check(b, len))
-				return ;
-		}
-		i++;
-		j = 0;
-		len = ft_len(b);
-		while (j < len)
-		{
-			if ((*b)->index & (1 << i))
-				pa(a, b);
-			else
-				rb(b);
-			j++;
-		}
-		j = 0;
+		if ((*a)->index & (1 << i))
+			ra(a);
+		else
+			pb(a, b);
+		if (!ft_sort_check(a, len) && !ft_rev_sort_check(b, len))
+			return (1);
+		j++;
 	}
-	while ((*b))
-		pa(a, b);
+	return (0);
 }
 
-void	ft_radix2(t_stack **a, t_stack **b, t_stack **fake_a, int len)
+void	ft_iterate_b(t_stack **a, t_stack **b, int i)
 {
-	int	i;
+	int	len;
 	int	j;
 
-	ft_index(a, fake_a);
 	j = 0;
-	i = 0;
-	while (ft_sort_check(a, len))
+	len = ft_len(b);
+	while (j < len)
 	{
-		while (j < len)
-		{
-			if ((*a)->index & (1 << i))
-				ra(a);
-			else
-				pb(a, b);
-			j++;
-		}
-		i++;
-		j = 0;
-		while ((*b))
+		if ((*b)->index & (1 << i))
 			pa(a, b);
+		else
+			rb(b);
+		j++;
 	}
 }
 
-void	ft_print_list(t_stack **list_head, char ab)
+void	ft_radix(t_stack **a, t_stack **b, t_stack **fake_a)
 {
-	t_stack	*print_stack;
+	int	i;
 
-	if (ab == 'a')
-		ft_printf("stack a: ");
-	else if (ab == 'b')
-		ft_printf("stack b: ");
-	print_stack = (*list_head);
-	while (print_stack != NULL)
+	ft_index(a, fake_a);
+	i = 0;
+	while (i < 8)
 	{
-		ft_printf("%i -> ", print_stack->data);
-		print_stack = print_stack->next;
+		if (ft_iterate_a(a, b, i) == 1)
+			return ;
+		i++;
+		ft_iterate_b(a, b, i);
 	}
-	if (print_stack == NULL)
-		ft_printf("NULL\n");
 }
 
 /*void	ft_chunk(t_stack **a, t_stack **b, t_stack **fake_a, int len)
