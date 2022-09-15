@@ -10,7 +10,7 @@ SRC			= push_swap.c\
 			  op_swap.c\
 			  utils.c\
 			  utils2.c\
-			  utils3.c\
+			  f_sort.c\
 			  utils4.c\
 			  radix.c\
 			  radix2.c\

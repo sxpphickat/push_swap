@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils3.c                                           :+:      :+:    :+:   */
+/*   f_sort.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:36:04 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/15 16:20:55 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/15 16:42:33 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,22 @@ int	ft_bigger(t_stack **stack_a)
 			big = temp->data;
 	}
 	return (big);
+}
+
+long	ft_smaller(t_stack **stack_a)
+{
+	t_stack	*temp;
+	long	small;
+
+	temp = (*stack_a);
+	small = temp->data;
+	while (temp->next != NULL)
+	{
+		temp = temp->next;
+		if (small > temp->data)
+			small = temp->data;
+	}
+	return (small);
 }
 
 int	ft_find_best(t_stack **stack_a, int len, long find)
@@ -72,31 +88,4 @@ void	ft_super_sort(t_stack **stack_a, t_stack **stack_b, int len)
 	}
 	while ((*stack_b) != NULL)
 		pa(stack_a, stack_b);
-}
-
-int	ft_last(t_stack **stack_a)
-{
-	t_stack	*temp;
-
-	temp = (*stack_a);
-	while (temp->next)
-		temp = temp->next;
-	return (temp->data);
-}
-
-int	ft_check_left_sort(t_stack **stack_a, int pivot)
-{
-	t_stack	*temp;
-
-	temp = (*stack_a);
-	if (temp->data == pivot)
-		return (1);
-	while (temp->data != pivot)
-	{
-		if (temp->data < temp->next->data)
-			temp = temp->next;
-		else
-			return (1);
-	}
-	return (0);
 }

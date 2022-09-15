@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:35:45 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/15 16:20:47 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/15 17:06:16 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,20 +94,4 @@ int	ft_repeat_check(t_stack **stack_a)
 		next = temp_stack->next;
 	}
 	return (0);
-}
-
-long	ft_smaller(t_stack **stack_a)
-{
-	t_stack	*temp;
-	long	small;
-
-	temp = (*stack_a);
-	small = temp->data;
-	while (temp->next != NULL)
-	{
-		temp = temp->next;
-		if (small > temp->data)
-			small = temp->data;
-	}
-	return (small);
 }

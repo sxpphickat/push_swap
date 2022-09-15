@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/15 14:35:07 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/15 16:44:54 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	ft_decide(t_stack *stack_a, t_stack *stack_b, t_stack *fake_a, int len)
 		ft_radix(&stack_a, &stack_b, &fake_a);
 		ft_pt2(&stack_a, &stack_b);
 	}
-	ft_print_stacks(&stack_a, &stack_b);
 	ft_free(&stack_a, &stack_b, &fake_a);
 }
 
