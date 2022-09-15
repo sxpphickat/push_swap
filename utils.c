@@ -6,11 +6,12 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:29:51 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/13 12:03:41 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/15 16:27:28 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 int	ft_ck(char	*s)
 {
@@ -27,14 +28,18 @@ int	ft_ck(char	*s)
 
 int	ft_create_x(t_stack **stack_a, char *argv[], int len)
 {
-	int	ret;
+	int		ret;
+	long	nb;
 
 	ret = 0;
 	while (len >= 1)
 	{
 		if ((ft_ck(argv[len])) == 1)
 			ret = 1;
-		ft_push(stack_a, ft_atoi(argv[len--]), 0);
+		nb = ft_atoi(argv[len--]);
+		if (nb > 2147483647 || nb < -2147483648)
+			ret = 1;
+		ft_push(stack_a, nb, 0);
 	}
 	return (ret);
 }

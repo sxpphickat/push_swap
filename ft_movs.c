@@ -6,13 +6,13 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 10:20:01 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/15 11:28:54 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/15 16:22:02 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_push(t_stack **head_ref, int data, size_t index)
+void	ft_push(t_stack **head_ref, long data, size_t index)
 {
 	t_stack	*new_node;
 
@@ -23,7 +23,7 @@ void	ft_push(t_stack **head_ref, int data, size_t index)
 	(*head_ref) = new_node;
 }
 
-void	ft_append(t_stack **head_ref, int new_data, size_t index)
+void	ft_append(t_stack **head_ref, long new_data, size_t index)
 {
 	t_stack	*new_node;
 	t_stack	*temp;
@@ -43,7 +43,7 @@ void	ft_append(t_stack **head_ref, int new_data, size_t index)
 	temp->next = new_node;
 }
 
-void	ft_insert_after(t_stack *node, int new_data, size_t index)
+void	ft_insert_after(t_stack *node, long new_data, size_t index)
 {
 	t_stack	*new_node;
 

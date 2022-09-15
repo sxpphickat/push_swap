@@ -6,17 +6,17 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 12:08:29 by vipereir          #+#    #+#             */
-/*   Updated: 2022/05/25 15:57:26 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/15 16:27:49 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
-	int	i;
-	int	nb;
-	int	signal;
+	int		i;
+	long	nb;
+	int		signal;
 
 	i = 0;
 	nb = 0;

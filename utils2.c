@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:35:45 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/14 10:55:36 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/15 16:20:47 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,10 @@ int	ft_repeat_check(t_stack **stack_a)
 	return (0);
 }
 
-int	ft_smaller(t_stack **stack_a)
+long	ft_smaller(t_stack **stack_a)
 {
 	t_stack	*temp;
-	int		small;
+	long	small;
 
 	temp = (*stack_a);
 	small = temp->data;

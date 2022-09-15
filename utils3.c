@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:36:04 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/08 17:44:47 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/15 16:20:55 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_bigger(t_stack **stack_a)
 	return (big);
 }
 
-int	ft_find_best(t_stack **stack_a, int len, int find)
+int	ft_find_best(t_stack **stack_a, int len, long find)
 {
 	t_stack	*temp;
 	int		movs;
