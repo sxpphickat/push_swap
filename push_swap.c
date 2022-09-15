@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/14 16:45:34 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/15 09:51:42 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_decide(t_stack	*stack_a, t_stack	*stack_b, t_stack	*fake_a, int len)
 {
 	if (len <= 5)
 		ft_small(&stack_a, &stack_b, len);
-/*	else if (len <= 50)
+	else if (len <= 50)
 	{
 		ft_fake_sort(&fake_a, &fake_a, len);
 		ft_radix2(&stack_a, &stack_b, &fake_a, len);
@@ -26,13 +26,8 @@ void	ft_decide(t_stack	*stack_a, t_stack	*stack_b, t_stack	*fake_a, int len)
 		ft_fake_sort(&fake_a, &fake_a, len);
 		ft_radix(&stack_a, &stack_b, &fake_a, len);
 		ft_pt2(&stack_a, &stack_b);
-	}*/
-	else
-	{
-		ft_fake_sort(&fake_a, &fake_a, len);
-		ft_radix_base_3(&stack_a, &stack_b, &fake_a, len);
 	}
-//	ft_print_stacks(&stack_a, &stack_b);
+	ft_print_stacks(&stack_a, &stack_b);
 }
 
 int	main(int argc, char *argv[])

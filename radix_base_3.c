@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 11:53:53 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/14 16:44:30 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/15 09:52:35 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ size_t	ft_dec_to_3(size_t dec)
 	three--;
 	return (three);
 }
-
+/*
 void	ft_radix_base_3(t_stack **a, t_stack **b, t_stack **fake_a, int len)
 {
 	int	i;
@@ -81,7 +81,26 @@ void	ft_radix_base_3(t_stack **a, t_stack **b, t_stack **fake_a, int len)
 		j = 0;
 		i--;
 		len = ft_len(b);
+		div *= 10;
 		while (j < len)
+		{
+			if (ft_dec_to_3((*b)->index) / div % 10 == 2)
+				pa(a, b);
+			else
+				rb(b);
+			j++;
+		}
+		j = 0;
+
+//		while ((*b))
+//			pa(a, b);
+	}
+}
+
+
+
+
+ *		while (j < len)
 		{
 			if (ft_dec_to_3((*b)->index) / div % 10 == 1)
 				pa(a, b);
@@ -92,6 +111,5 @@ void	ft_radix_base_3(t_stack **a, t_stack **b, t_stack **fake_a, int len)
 		j = 0;
 		while ((*b))
 			pa(a, b);
-		div *= 10;
-	}
-}
+
+ * */
