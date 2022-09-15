@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:37:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/15 16:46:36 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/15 17:11:27 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,50 @@ void	ft_iterate_b(t_stack **a, t_stack **b, int i)
 void	ft_radix(t_stack **a, t_stack **b, t_stack **fake_a)
 {
 	int	i;
+	int	j;
+	int	big;
+	int	len;
+
+	ft_index(a, fake_a);
+	j = 0;
+	i = 0;
+	len = ft_len(a);
+	big = ft_bigger(a);
+	while (i < 999)
+	{
+		len = ft_len(a);
+		while (j < len)
+		{
+			if ((*a)->index & (1 << i))
+				ra(a);
+			else
+				pb(a, b);
+			j++;
+			if (!ft_sort_check(a, len) && !ft_rev_sort_check(b, len))
+				return ;
+		}
+		i++;
+		j = 0;
+		len = ft_len(b);
+		while (j < len)
+		{
+			if ((*b)->index & (1 << i))
+				pa(a, b);
+			else
+				rb(b);
+			j++;
+		}
+		j = 0;
+	}
+	while ((*b))
+		pa(a, b);
+}
+
+
+/*
+void	ft_radix(t_stack **a, t_stack **b, t_stack **fake_a)
+{
+	int	i;
 
 	ft_index(a, fake_a);
 	i = 0;
@@ -91,4 +135,6 @@ void	ft_radix(t_stack **a, t_stack **b, t_stack **fake_a)
 		i++;
 		ft_iterate_b(a, b, i);
 	}
-}
+}*/
+
+

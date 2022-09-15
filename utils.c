@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:29:51 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/15 16:27:28 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/15 17:14:32 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,24 +70,4 @@ void	ft_print_stacks(t_stack **stack_a, t_stack **stack_b)
 	write(1, "\n", 1);
 	write(1, "-  -\n", 5);
 	write(1, "a  b\n", 5);
-}
-
-void	fsa(t_stack **stack_a)
-{
-	t_stack	*node_one;
-	t_stack	*node_two;
-
-	if ((*stack_a)->next == NULL)
-		return ;
-	node_one = (*stack_a);
-	node_two = (*stack_a)->next;
-	*stack_a = node_two;
-	node_one->next = node_two->next;
-	node_two->next = node_one;
-}
-
-void	fra(t_stack **stack_a)
-{
-	ft_append(stack_a, (*stack_a)->data, (*stack_a)->index);
-	ft_pop(stack_a);
 }

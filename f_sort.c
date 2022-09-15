@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:36:04 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/15 16:42:33 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/15 17:15:43 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	ft_find_best(t_stack **stack_a, int len, long find)
 		return (2);
 }
 
-void	ft_super_sort(t_stack **stack_a, t_stack **stack_b, int len)
+void	ft_fake_sort(t_stack **stack_a, t_stack **stack_b, int len)
 {
 	int	r;
 	int	small;
@@ -75,11 +75,11 @@ void	ft_super_sort(t_stack **stack_a, t_stack **stack_b, int len)
 		while ((*stack_a)->data != small)
 		{
 			if (r == 1)
-				rra(stack_a);
+				frra(stack_a);
 			else
-				ra(stack_a);
+				fra(stack_a);
 		}
-		pb(stack_a, stack_b);
+		fpb(stack_a, stack_b);
 		if ((*stack_a) != NULL)
 		{
 			small = ft_smaller(stack_a);
@@ -87,5 +87,5 @@ void	ft_super_sort(t_stack **stack_a, t_stack **stack_b, int len)
 		}
 	}
 	while ((*stack_b) != NULL)
-		pa(stack_a, stack_b);
+		fpa(stack_a, stack_b);
 }
