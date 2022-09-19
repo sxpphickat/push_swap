@@ -6,12 +6,11 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:29:51 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/19 18:26:24 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/19 18:29:38 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 int	ft_ck(char	*s)
 {
