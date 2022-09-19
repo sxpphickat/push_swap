@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 14:25:35 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/15 16:27:09 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/19 11:43:00 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_push(t_stack **head_ref, long data, size_t index);
 void	ft_append(t_stack **head_ref, long new_data, size_t index);
 void	ft_insert_after(t_stack *node, long new_data, size_t index);
 void	ft_pop(t_stack **stack_x);
-void	ft_free(t_stack **a, t_stack **b, t_stack **fake_a);
+void	ft_free(t_stack **a, t_stack **b, t_stack **fake_a, t_stack **fake_b);
 
 void	sa(t_stack **stack_a);
 void	sb(t_stack **stack_b);
@@ -40,6 +40,11 @@ void	rr(t_stack **stack_a, t_stack **stack_b);
 void	rra(t_stack **stack_a);
 void	rrb(t_stack **stack_b);
 void	rrr(t_stack **stack_a, t_stack **stack_b);
+
+void	fpa(t_stack **stack_a, t_stack **stack_b);
+void	fpb(t_stack **stack_a, t_stack **stack_b);
+void	fra(t_stack **stack_a);
+void	frra(t_stack **stack_a);
 
 int		ft_create_x(t_stack **stack_a, char *argv[], int len);
 void	ft_print_list(t_stack **list_head, char ab);
