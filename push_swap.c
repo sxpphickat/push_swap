@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/19 17:30:03 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/19 18:00:12 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,13 @@ int	ft_mlen(char **matrix)
 	return (--i);
 }
 
+void	ft_initialize_stacks(t_stack **a, t_stack **b, t_stack **f)
+{
+	a = NULL;
+	b = NULL;
+	f = NULL;
+}
+
 int	main(int argc, char *argv[])
 {
 	t_stack	*stack_a;
@@ -66,7 +73,6 @@ int	main(int argc, char *argv[])
 	int		len;
 	int		ret;
 
-	stack_b = NULL;
 	len = argc - 2;
 	if (argc <= 1 || (*argv[1] == '\0'))
 		return (0);
@@ -77,6 +83,7 @@ int	main(int argc, char *argv[])
 	}
 	else
 		argv++;
+	ft_initialize_stacks(&stack_a, &stack_b, &fake_a);
 	ret = ft_create_x(&stack_a, argv, len);
 	ft_create_x(&fake_a, argv, len);
 	if (ret == 1 || ft_repeat_check(&stack_a))
