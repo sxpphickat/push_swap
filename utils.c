@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:29:51 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/19 17:56:35 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/19 18:15:41 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,29 @@ void	ft_print_stacks(t_stack **stack_a, t_stack **stack_b)
 	write(1, "\n", 1);
 	write(1, "-  -\n", 5);
 	write(1, "a  b\n", 5);
+}
+
+void	ft_radix2(t_stack **a, t_stack **b, t_stack **fake_a, int len)
+{
+	int	i;
+	int	j;
+
+	ft_index(a, fake_a);
+	j = 0;
+	i = 0;
+	while (ft_sort_check(a, len))
+	{
+		while (j < len)
+		{
+			if ((*a)->index & (1 << i))
+				ra(a);
+			else
+				pb(a, b);
+			j++;
+		}
+		i++;
+		j = 0;
+		while ((*b))
+			pa(a, b);
+	}
 }

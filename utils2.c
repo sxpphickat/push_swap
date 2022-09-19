@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:35:45 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/15 17:14:52 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/19 18:09:36 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,55 @@ int	ft_repeat_check(t_stack **stack_a)
 		next = temp_stack->next;
 	}
 	return (0);
+}
+
+int	ft_max_value(t_stack **list)
+{
+	t_stack	**aux;
+	size_t	max;
+
+	aux = list;
+	max = 0;
+	while (*aux != NULL)
+	{
+		if ((*aux)->index > max)
+			max = (*aux)->index;
+		aux = &(*aux)->next;
+	}
+	return (max);
+}
+
+void	ft_index(t_stack **a, t_stack **f)
+{
+	int		i;
+	t_stack	*temp;
+	t_stack	*tempf;
+
+	temp = (*a);
+	tempf = (*f);
+	i = 0;
+	while (tempf)
+	{
+		while (temp->data != tempf->data)
+			temp = temp->next;
+		temp->index = i;
+		i++;
+		temp = (*a);
+		tempf = tempf->next;
+	}
+}
+
+int	ft_len(t_stack **x)
+{
+	int		i;
+	t_stack	*temp;
+
+	temp = (*x);
+	i = 0;
+	while (temp)
+	{
+		temp = temp->next;
+		i++;
+	}
+	return (i);
 }

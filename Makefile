@@ -11,9 +11,7 @@ SRC			= push_swap.c\
 			  utils.c\
 			  utils2.c\
 			  f_sort.c\
-			  utils4.c\
 			  radix.c\
-			  radix2.c\
 			  ft_free.c
 
 LIB_PATH	= libft/libft.a
