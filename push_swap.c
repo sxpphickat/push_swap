@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/19 13:14:00 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/19 14:58:56 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,32 @@ int	main(int argc, char *argv[])
 	t_stack	*fake_a;
 	int		len;
 	int		ret;
+	char **matrix;
+	char **temp;
 
 	len = argc - 1;
-	if (argc <= 2)
+	if (argc <= 1)
 		return (0);
+	else if (argc == 2)
+	{
+		matrix = ft_split(argv[1], ' ');
+		temp = matrix;
+		len = 0;
+		while (temp[len])
+			len++;
+		len--;
+	}
+	else
+		matrix = argv;
+	ft_printf("%i\n", len);
+//		argv = ft_split(argv[1], ' ');
+//	ft_printf("%s\n", matrix[0]);
 	fake_a = NULL;
 	stack_a = NULL;
 	stack_b = NULL;
-	ret = ft_create_x(&stack_a, argv, len);
-	ft_create_x(&fake_a, argv, len);
+	ret = ft_create_x(&stack_a, matrix, len);
+	ft_create_x(&fake_a, matrix, len);
+	len++;
 	if (ret == 1 || ft_repeat_check(&stack_a))
 		return (write(2, "Error\n", 6));
 	ft_decide(stack_a, stack_b, fake_a, len);
