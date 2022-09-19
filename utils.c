@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:29:51 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/19 15:03:38 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/19 17:22:43 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	ft_create_x(t_stack **stack_a, char *argv[], int len)
 	int		ret;
 	long	nb;
 
+	stack_a = NULL;
 	ret = 0;
 	while (len >= 0)
 	{

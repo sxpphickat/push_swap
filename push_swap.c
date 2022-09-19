@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/19 17:16:31 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/19 17:30:03 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,31 +65,26 @@ int	main(int argc, char *argv[])
 	t_stack	*fake_a;
 	int		len;
 	int		ret;
-	char	**matrix;
 
+	stack_b = NULL;
 	len = argc - 2;
 	if (argc <= 1 || (*argv[1] == '\0'))
 		return (0);
 	else if (argc == 2)
 	{
-		matrix = ft_split(argv[1], ' ');
-		len = ft_mlen(matrix);
+		argv = ft_split(argv[1], ' ');
+		len = ft_mlen(argv);
 	}
 	else
-		matrix = ++argv;
-	fake_a = NULL;
-	stack_a = NULL;
-	stack_b = NULL;
-	ret = ft_create_x(&stack_a, matrix, len);
-	ft_create_x(&fake_a, matrix, len);
+		argv++;
+	ret = ft_create_x(&stack_a, argv, len);
+	ft_create_x(&fake_a, argv, len);
 	if (ret == 1 || ft_repeat_check(&stack_a))
 		return (write(2, "Error\n", 6));
 	ft_decide(stack_a, stack_b, fake_a, ++len);
 	if (argc == 2)
-		ft_free_matrix(matrix);
+		ft_free_matrix(argv);
 	return (0);
 }
-
-
 
 //ft_print_stacks(&stack_a, &stack_b);
