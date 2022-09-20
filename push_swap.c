@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/20 08:29:35 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/20 12:22:08 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,9 @@ int	main(int argc, char *argv[])
 	ret = ft_create_x(&stack_a, argv, len);
 	ft_create_x(&fake_a, argv, len);
 	if (ret == 1 || ft_repeat_check(&stack_a))
-		return (write(2, "Error\n", 6));
+		return (ftf(&stack_a, &fake_a, argv, argc));
 	ft_decide(stack_a, stack_b, fake_a, ++len);
 	if (argc == 2)
 		ft_free_matrix(argv);
 	return (0);
 }
-
-//ft_print_stacks(&stack_a, &stack_b);

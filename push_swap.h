@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 14:25:35 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/20 08:50:03 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/20 12:18:28 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,8 @@ size_t	ft_smallerb_index(t_stack **stack_a, size_t better);
 void	ft_pt2(t_stack **a, t_stack **b);
 int		ft_rev_sort_check(t_stack **stack_a, int len);
 long	ft_smaller(t_stack **stack_a);
+
+int		ftf(t_stack **a, t_stack **fa, char **argv, int argc);
+void	ft_free_matrix(char **matrix);
 
 #endif
