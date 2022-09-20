@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:37:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/19 11:52:10 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/20 08:16:32 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	ft_radix(t_stack **a, t_stack **b, t_stack **fake_a)
 	while (ft_sort_check(a, len))
 	{
 		if (ft_iterate_a(a, b, i) == 1)
-			return ;
+			ft_pt2(a, b);
 		i++;
 		ft_iterate_b(a, b, i);
 	}

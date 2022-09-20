@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:19:15 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/19 18:00:12 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/09/20 08:29:35 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,10 @@ void	ft_decide(t_stack *stack_a, t_stack *stack_b, t_stack *fake_a, int len)
 	}
 	if (len <= 5)
 		ft_small(&stack_a, &stack_b, len);
-	else if (len <= 50)
-	{
-		ft_fake_sort(&fake_a, &fake_b, len);
-		ft_radix2(&stack_a, &stack_b, &fake_a, len);
-	}
 	else
 	{
 		ft_fake_sort(&fake_a, &fake_b, len);
 		ft_radix(&stack_a, &stack_b, &fake_a);
-		ft_pt2(&stack_a, &stack_b);
 	}
 	ft_free(&stack_a, &stack_b, &fake_a, &fake_b);
 }
